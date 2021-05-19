@@ -10,9 +10,9 @@ tests in MPI mode.
 ## The environment on the head node
 
     module load cuda11/11.1.1
-	  export CUDA_HOME=/srv/software/cuda-toolkits/11.1.1
-	  cd /work1/numint/paterno/cosmosis
-	  source /work1/numint/paterno/setup-conda
+    export CUDA_HOME=/srv/software/cuda-toolkits/11.1.1
+    cd /work1/numint/paterno/cosmosis
+    source /work1/numint/paterno/setup-conda
     source config/setup-conda-cosmosis cosmosis   # This will activate the correct conda environment
 
 ## Getting a worker node
