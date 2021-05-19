@@ -17,7 +17,7 @@ tests in MPI mode.
 
 ## Getting a worker node
 
-Follow the instructions for [developing on the Wilson Cluster](developing-on-wc.html) to
+Follow the instructions for [developing on the Wilson Cluster](developing-on-wc.md) to
 obtain an allocated node, to get an interactive shell on a worker node, or to run a
 test job.
 
