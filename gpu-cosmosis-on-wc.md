@@ -21,3 +21,13 @@ Follow the instructions for [developing on the Wilson Cluster](developing-on-wc.
 obtain an allocated node, to get an interactive shell on a worker node, or to run a
 test job.
 
+After getting an interactive shell on a worker node, the current conda environment will *not*
+be the one established on the head node, but `cosmosis` will be set up. To activate the right
+conda environment, use:
+
+    conda activate cosmosis
+
+To see what is your currently-active conda environment, use:
+
+    conda info --environment
+
