@@ -11,9 +11,18 @@ tests in MPI mode.
 
     module load cuda11/11.1.1
     export CUDA_HOME=/srv/software/cuda-toolkits/11.1.1
+    export PAGANI_DIR=/work1/numint/paterno/gpuintegration/cudaPagani
     cd /work1/numint/paterno/cosmosis
     source /work1/numint/paterno/setup-conda
     source config/setup-conda-cosmosis cosmosis   # This will activate the correct conda environment
+
+The last command will result in a message:
+
+    Version of installed CUDA didn't match package
+
+I have not yet found any failure as a result.
+
+The conda environment `tools` on the head node provides some useful tools, e.g. `tmux`, and modern `vim` and `git`; also `dos2unix`.
 
 ## Getting a worker node
 
@@ -29,5 +38,13 @@ conda environment, use:
 
 To see what is your currently-active conda environment, use:
 
-    conda info --environment
+    conda info -e
 
+## Environment setup
+
+The environment variables needed are set up on the head node, above.
+On the worker node, cd to the working directory:
+
+    cd $PAGANI_DIR
+
+Builds are done in the `build` subdirectory.

@@ -22,8 +22,6 @@ allocating nodes for development or running MPI jobs interactively.
 
 You may want to `kinit` on the head node to obtain Kerberos credentials.
 
-It might be convenient to define
-
 ### To obtain a worker node for development
 
 The `salloc` command allocates a node and puts you into a subshell that has
