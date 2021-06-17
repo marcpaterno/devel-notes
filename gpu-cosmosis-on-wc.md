@@ -12,6 +12,9 @@ tests in MPI mode.
     module load cuda11/11.1.1
     export CUDA_HOME=/srv/software/cuda-toolkits/11.1.1
     export PAGANI_DIR=/work1/numint/paterno/gpuintegration/cudaPagani
+    export Y3GCC_DIR=/work1/numint/paterno
+    export Y3_CLUSTER_CPP_DIR=${Y3GCC_DIR}/y3_cluster_cpp
+    export Y3_CLUSTER_WORK_DIR=${Y3GCC_DIR}/y3_cluster_cpp 
     cd /work1/numint/paterno/cosmosis
     source /work1/numint/paterno/setup-conda
     source config/setup-conda-cosmosis cosmosis   # This will activate the correct conda environment
@@ -43,8 +46,14 @@ To see what is your currently-active conda environment, use:
 ## Environment setup
 
 The environment variables needed are set up on the head node, above.
-On the worker node, cd to the working directory:
+
+### For PAGANI
+
+For testing/adding to the PAGANI code, on the worker node,
+`cd` to the working directory:
 
     cd $PAGANI_DIR
-
+ 
 Builds are done in the `build` subdirectory.
+
+### For `y3_cluster_cpp` code using PAGANI
