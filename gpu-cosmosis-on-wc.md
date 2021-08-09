@@ -11,7 +11,7 @@ tests in MPI mode.
 
     module load cuda11/11.1.1
     export CUDA_HOME=/srv/software/cuda-toolkits/11.1.1
-    export PAGANI_DIR=/work1/numint/paterno/gpuintegration/cudaPagani
+    export PAGANI_DIR=/work1/numint/$(id -un)/gpuintegration/cudaPagani
     export Y3GCC_DIR=/work1/numint/paterno
     export Y3_CLUSTER_CPP_DIR=${Y3GCC_DIR}/y3_cluster_cpp
     export Y3_CLUSTER_WORK_DIR=${Y3GCC_DIR}/y3_cluster_cpp 
