@@ -69,3 +69,7 @@ For testing/adding to the PAGANI code, on the worker node,
 Builds are done in the `build` subdirectory.
 
 ### For `y3_cluster_cpp` code using PAGANI
+
+*NB*: the instructions below are for Marc. If you may need to adjust them for your own environment.
+
+    cmake -DPAGANI_DIR=${PAGANI_DIR} -DCMAKE_MODULE_PATH="${Y3_CLUSTER_CPP_DIR}/cmake;${Y3GCC_DIR}/cubacpp/cmake/modules" -DCUBACPP_DIR=${Y3GCC_DIR}/cubacpp -DCUBA_DIR=${Y3GCC_DIR}/cuba  -DCMAKE_BUILD_TYPE=Release  .
