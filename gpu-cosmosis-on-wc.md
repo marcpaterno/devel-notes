@@ -26,6 +26,13 @@ The last command will result in a message:
 I have not yet found any failure as a result.
 
 The conda environment `tools` on the head node provides some useful tools, e.g. `tmux`, and modern `vim` and `git`; also `dos2unix`.
+I find it useful to have one login window on the head node with the `tools` environment active, and a second in which I have a
+login to a GPU node to compile and run tests. I use the window on the head node for editing and `git` interaction.
+
+To get the `tools` environment active, you have to deactivate the previous environment:
+
+    conda deactivate
+    conda activate tools
 
 ## Getting a worker node
 
@@ -34,8 +41,9 @@ obtain an allocated node, to get an interactive shell on a worker node, or to ru
 test job.
 
 After getting an interactive shell on a worker node, the current conda environment will *not*
-be the one established on the head node, but `cosmosis` will be set up. To activate the right
-conda environment, use:
+be the one established on the head node, but `cosmosis` will be set up. Running `cosmosis` in
+this condition causes the failure to find Python packages installed into the `cosmosis` environment.
+To activate the right conda environment, use:
 
     conda activate cosmosis
 
@@ -48,6 +56,10 @@ To see what is your currently-active conda environment, use:
 The environment variables needed are set up on the head node, above.
 
 ### For PAGANI
+
+The environment variable `$PAGANI_DIR` is set above to the directory containing PAGANI.
+Remember to use the *editing* window (on the host) to modify code, and the *compiling/running* window
+(on the GPU node) when you want to make changes to PAGANI.
 
 For testing/adding to the PAGANI code, on the worker node,
 `cd` to the working directory:
