@@ -70,6 +70,11 @@ Builds are done in the `build` subdirectory.
 
 ### For `y3_cluster_cpp` code using PAGANI
 
-*NB*: the instructions below are for Marc. If you may need to adjust them for your own environment.
+*NB*: the instructions below establish a build of `y3_cluster_cpp` that uses your own clone
+of the `gpuintegration` repository (and thus allows you to make changes in the PAGANI code),
+but which shares the use of `cosmosis`, `cuba` and `cubacpp` (because our work on `y3_cluster_cpp`
+does not usually involve changing any of them).m
 
+
+    # Set up a Release (optimized) build of y1_cluster_cpp
     cmake -DPAGANI_DIR=${Y3GCC_DIR}/gpuintegration -DCMAKE_MODULE_PATH="${Y3_CLUSTER_CPP_DIR}/cmake;/work1/numint/paterno/cubacpp/cmake/modules" -DCUBACPP_DIR=/work1/numint/paterno/cubacpp -DCUBA_DIR=/work1/numint/paterno/cuba -DCMAKE_BUILD_TYPE=Release -G Ninja  .
