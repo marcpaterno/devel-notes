@@ -72,5 +72,4 @@ Builds are done in the `build` subdirectory.
 
 *NB*: the instructions below are for Marc. If you may need to adjust them for your own environment.
 
-    # Ioannis, do this resetting of Y3GCC_DIR *only for this command*.
     cmake -DPAGANI_DIR=${Y3GCC_DIR}/gpuintegration -DCMAKE_MODULE_PATH="${Y3_CLUSTER_CPP_DIR}/cmake;/work1/numint/paterno/cubacpp/cmake/modules" -DCUBACPP_DIR=/work1/numint/paterno/cubacpp -DCUBA_DIR=/work1/numint/paterno/cuba -DCMAKE_BUILD_TYPE=Release -G Ninja  .
