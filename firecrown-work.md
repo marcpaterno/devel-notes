@@ -24,11 +24,11 @@ Do this in the first `tmux` window. Name it *FC-build*.
 Do this in the second `tmux` window. Name it *CosmoSIS*.
 
     cd ~/MyProjects/firecrown-work/cosmosis
-	source ~/bin/setup-conda
-	source config/setup-conda-cosmosis firecrown
-	export PYTHONPATH=${PYTHONPATH}/Users/paterno/repos/firecrown/build/lib # Note there is no ':' in the command
-	export FIRECROWN_EXAMPLES_DIR=/Users/paterno/repos/firecrown/examples
-  export FIRECROWN_DIR=/Users/paterno/repos/firecrown/build/lib
+    source ~/bin/setup-conda
+    source config/setup-conda-cosmosis firecrown
+    export PYTHONPATH=${PYTHONPATH}/Users/paterno/repos/firecrown/build/lib # Note there is no ':' in the command
+    export FIRECROWN_EXAMPLES_DIR=/Users/paterno/repos/firecrown/examples
+    export FIRECROWN_DIR=/Users/paterno/repos/firecrown/build/lib
 
 
 # Development
