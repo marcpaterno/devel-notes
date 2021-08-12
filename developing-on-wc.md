@@ -34,7 +34,7 @@ in the subshell from `salloc` or not. If `$SHLVL` is 1, you are *not* in a
 subshell. 
 
     export CURRENT_PROJECT=numint
-    salloc -A ${CURRENT_PROJECT} -N 1 --tasks-per-node=1 --cpus-per-task=20   --constraint=v100 --gres=gpu:1 --partition=gpu_gce
+    salloc -A ${CURRENT_PROJECT} -N 1 --tasks-per-node=1 --cpus-per-task=20   --constraint=v100 --gres=gpu:1 --partition=gpu_gce --time=16:00:00
     HOME=/work1/${CURRENT_PROJECT}/$(id -un) srun  -A ${CURRENT_PROJECT} --unbuffered --pty /bin/bash -l
 
 This configuration provides 20 cores for parallel building.
@@ -50,7 +50,7 @@ To run a quick MPI job as a test, you need a correctly-allocated node (different
 from what is used above for the development environment) in which you can run
 `srun` to launch MPI programs.
 
-       salloc -A numint -N 1 --tasks-per-node=20 --cpus-per-task=1  --constraint=v100 --gres=gpu:1 --partition=gpu_gce
+       salloc -A numint -N 1 --tasks-per-node=20 --cpus-per-task=1  --constraint=v100 --gres=gpu:1 --partition=gpu_gce --time=16:00:00
 
 In the subshell that this establishes, you can use `srun` directly to execute an
 MPI program.
