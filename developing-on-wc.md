@@ -34,7 +34,7 @@ in the subshell from `salloc` or not. If `$SHLVL` is 1, you are *not* in a
 subshell. 
 
     export CURRENT_PROJECT=numint
-    salloc -A ${CURRENT_PROJECT} -N 1 --tasks-per-node=1 --cpus-per-task=20   --constraint=v100 --gres=gpu:1 --partition=gpu_gce --time=16:00:00
+    salloc -A ${CURRENT_PROJECT} -N 1 --tasks-per-node=1 --cpus-per-task=20   --constraint=v100 --gres=gpu:1 --partition=gpu_gce
     HOME=/work1/${CURRENT_PROJECT}/$(id -un) srun  -A ${CURRENT_PROJECT} --unbuffered --pty /bin/bash -l
 
 This configuration provides 20 cores for parallel building.
