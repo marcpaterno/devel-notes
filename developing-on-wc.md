@@ -6,7 +6,7 @@ and a variety of configurations of worker nodes. It uses the SLURM batch system
 to control running of jobs. All access to the worker nodes, including interactive
 access, is obtained using SLURM commands.
 
-## My suggested working setup
+## My suggested working setup: GPUs
 
 For development using GPUs, I find it convenient to *build* software while
 logged into a *worker* node with the appropriate hardware. This allows one to
@@ -62,3 +62,18 @@ launch a program, you have to use the `--mpi` flag:
 
 Failure to supply the `--mpi=pmi2` flag would result in 20 MPI programs of 1
 rank each, rather than 1 MPI program of 20 ranks.
+
+## My suggested working setup: CPU nodes
+
+The supply of v100 GPUs on WC is very limited, so when only CPU nodes are needed it is best to use a CPU worker node.
+The general rules are similar to the GPU nodes, as described above.
+
+To obtain a node for *building*, use:
+
+    export CURRENT_PROJECT=accelsim
+    salloc -A ${CURRENT_PROJECT} -N 1 --tasks-per-node=1 --cpus-per-task=20 --partition=cpu_gce --time=16:00:00
+    HOME=/work1/${CURRENT_PROJECT}/$(id -un) srun  -A ${CURRENT_PROJECT} --unbuffered --pty /bin/bash -l
+
+Remember that you can't usefully run MPI programs on this node.
+
+
