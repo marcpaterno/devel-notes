@@ -17,8 +17,11 @@ than creating an environment incrementally.
 I set up my working environment at under `/work1`. This setup needs to be done every time
 I start work.
 
-    # Go to the working directory
+    # Go to the working directory; use here whatever you really use, not my name.
     cd /work1/numint/paterno/
+
+The following should be run *from where you created your top-level directory, above*.
+
     # Set up the environment
     export Y3GCC_DIR=$PWD
     export Y3_CLUSTER_CPP_DIR=${Y3GCC_DIR}/y3_cluster_cpp
