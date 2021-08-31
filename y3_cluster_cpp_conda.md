@@ -62,6 +62,13 @@ will be placing the CUBA dynamic library.
     mv cuba.h include/
     mv libcuba.so lib/
     cd $Y3GCC_DIR
+    
+### Build `cosmosis`
+
+
+### Build `gpuintegration`
+
+### Build `y3_cluster_cpp`
 
 ## Working in the environment
 
