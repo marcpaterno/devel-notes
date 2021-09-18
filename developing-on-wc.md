@@ -54,7 +54,10 @@ To run a quick MPI job as a test, you need a correctly-allocated node (different
 from what is used above for the development environment) in which you can run
 `srun` to launch MPI programs.
 
-       salloc -A numint -N 1 --tasks-per-node=20 --cpus-per-task=1  --constraint=v100 --gres=gpu:1 --partition=gpu_gce --time=16:00:00
+    export CURRENT_PROJECT=numint
+    export WORKHOME=/work1/${CURRENT_PROJECT}/$(id -un)
+    cd ${WORKHOME}
+    salloc -A numint -N 1 --tasks-per-node=20 --cpus-per-task=1  --constraint=v100 --gres=gpu:1 --partition=gpu_gce --time=16:00:00
 
 In the subshell that this establishes, you can use `srun` directly to execute an
 MPI program.
@@ -62,6 +65,9 @@ MPI program.
 At least for my programs that use MPI supplied by Conda, in order to correctly
 launch a program, you have to use the `--mpi` flag:
 
+    export CURRENT_PROJECT=numint
+    export WORKHOME=/work1/${CURRENT_PROJECT}/$(id -un)
+    cd ${WORKHOME}
     srun -n 20 --mpi=pmi2 <program and program arguments and options>
 
 Failure to supply the `--mpi=pmi2` flag would result in 20 MPI programs of 1
@@ -75,6 +81,8 @@ The general rules are similar to the GPU nodes, as described above.
 To obtain a node for *building*, use:
 
     export CURRENT_PROJECT=accelsim
+    export WORKHOME=/work1/${CURRENT_PROJECT}/$(id -un)
+    cd ${WORKHOME}
     salloc -A ${CURRENT_PROJECT} -N 1 --tasks-per-node=1 --cpus-per-task=20 --partition=cpu_gce --time=16:00:00
     HOME=/work1/${CURRENT_PROJECT}/$(id -un) srun  -A ${CURRENT_PROJECT} --unbuffered --pty /bin/bash -l
 
