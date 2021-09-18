@@ -13,6 +13,8 @@ logged into a *worker* node with the appropriate hardware. This allows one to
 run simple (*i.e.* **not MPI**) programs immediately for testing.
 
 However, to run an MPI program, one must launch from the head node.
+You must *not* run `srun` when your current directory is in `/nashome`.
+This is why the `cd` command in the instruction block below is there.
 
 ### Setup your environment on the head node
 
@@ -34,8 +36,10 @@ in the subshell from `salloc` or not. If `$SHLVL` is 1, you are *not* in a
 subshell. 
 
     export CURRENT_PROJECT=numint
+    export WORKHOME=/work1/${CURRENT_PROJECT}/$(id -un)
+    cd ${WORKHOME}
     salloc -A ${CURRENT_PROJECT} -N 1 --tasks-per-node=1 --cpus-per-task=20   --constraint=v100 --gres=gpu:1 --partition=gpu_gce
-    HOME=/work1/${CURRENT_PROJECT}/$(id -un) srun  -A ${CURRENT_PROJECT} --unbuffered --pty /bin/bash -l
+    HOME=${WORKHOME} srun  -A ${CURRENT_PROJECT} --unbuffered --pty /bin/bash -l
 
 This configuration provides 20 cores for parallel building.
 **You can not run an MPI program in this session**.
