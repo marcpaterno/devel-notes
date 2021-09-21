@@ -18,9 +18,12 @@ The activate the module that will make the Cobalt commands (e.g. `qsub`) talk to
 The ALCF site for ThetaGPU has instructions *that are wrong*.
 To get access to an interactive GPU node, do this:
 
+    qsub -I -q single-gpu -n 1 -t 60 -A gccy3 --attrs=pubnet
 
-    # the '-t 0' gives the longest allowed wallclock time allocation
-    qsub -I -q single-gpu -n 1 -t 0 -A gccy3 -t --attrs=pubnet
+Specifying `-t 0` is supposed to give you the maximum time allowed, but it fails with a message:
+
+    No handlers could be found for logger "Proxy"
+    <Fault 1001: "Walltime less than the 'single-gpu' queue min walltime of 00:05:00\n">
 
 When the prompt returns, you are on a compute node with 1 GPU allocated.
 
@@ -30,10 +33,15 @@ We use an environment module to provide `conda`.
 We create our own environment to contain the necessary packages.
 Some are Python, some are C++, and some use Fortran.
 
+Note that the `ucx` module used is specific to running on ThetaGPU, and was recommended during the May 2021 ALCF Software Performance Workshop.
+Note that the `conda create` command below generates a warning that a newer version of conda exists, and suggests upgrading.
+Because this version of conda is provided by an environment module, *you can not update the version of conda*.
+All the modules we will use will be installed in the environment we create, so this should not be an actual impediment.
+
+    module load nvhpc-byo-compiler/21.7
     module load conda/2021-06-28
     export CUDA_HOME # because it is set, but not exported
-    conda create -p /grand/gccy3/cosmosis -c conda-forge astropy cffi cfitsio click cmake configparser cudatoolkit cxx-compiler cython emcee==2.2.1 fftw fitsio fortran-compiler future gsl jinja2 kombine matplotlib minuit2 mpi4py numba numpy nvcc_linux-64 openblas pybind11 pyccl pycparser pytest pyyaml sacc scikit-learn scipy six
-    conda activate /grand/gccy3/cosmosis
+    conda create -p /grand/gccy3/cosmosis -c conda-forge astropy cffi cfitsio click cmake configparser cudatoolkit cxx-compiler cython emcee==2.2.1 fftw fitsio fortran-compiler future gsl jinja2 kombine matplotlib minuit2 mpi4py numba numpy nvcc_linux-64 openblas pybind11 pyccl pycparser pytest pyyaml sacc scikit-learn scipy six ucx
 
 ## Working environment
 
@@ -44,6 +52,9 @@ The conda environment installation is under `/grand/gccy3/cosmosis`.
     module load conda/2021-06-28
     conda activate /grand/gccy3/cosmosis
     export CUDA_HOME # because it is set, but not exported
+    export OMPI_MCA_opal_cuda_support=true
+    export OMPI_MCA_pml="ucx"
+    export OMPI_MCA_osc="ucx"
 
 This should result in a shell in which `nvcc` picks up the GCC 9.4.0 compiler that is part of the conda environment, rather than the GCC 9.3.0-17ubuntu1~20.04 that comes from the OS.
 It should also make `python` be Python v3.9.7, rather than 2.7.18 that is the system `python`.
