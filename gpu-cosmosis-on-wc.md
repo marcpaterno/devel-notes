@@ -14,7 +14,7 @@ tests in MPI mode.
     export PAGANI_DIR=/work1/numint/$(id -un)/gpuintegration/cudaPagani
     export Y3GCC_DIR=/work1/numint/$(id -un)
     export Y3_CLUSTER_CPP_DIR=${Y3GCC_DIR}/y3_cluster_cpp
-    export Y3_CLUSTER_WORK_DIR=${Y3GCC_DIR}/y3_cluster_cpp 
+    export Y3_CLUSTER_WORK_DIR=${Y3_CLUSTER_CPP_DIR}/release-build # This assumes an out-of-source build in this directory
     cd /work1/numint/paterno/cosmosis
     source /work1/numint/paterno/setup-conda
     source config/setup-conda-cosmosis cosmosis   # This will activate the correct conda environment
