@@ -47,6 +47,8 @@ All the modules we will use will be installed in the environment we create, so t
 
 I set up my working environment under `/grand/gccy3`.
 The conda environment installation is under `/grand/gccy3/cosmosis`.
+The top-level for the software installation stack (as opposed to conda itself) is `/grand/gccy3/top_dir`.
+
 
 
     module load conda/2021-06-28
@@ -55,11 +57,49 @@ The conda environment installation is under `/grand/gccy3/cosmosis`.
     export OMPI_MCA_opal_cuda_support=true
     export OMPI_MCA_pml="ucx"
     export OMPI_MCA_osc="ucx"
+    export Y3GCC_DIR=/grand/gccy3/topdir
+    export Y3_CLUSTER_CPP_DIR=${Y3GCC_DIR}/y3_cluster_cpp
+    export Y3_CLUSTER_WORK_DIR=${Y3GCC_DIR}/y3_cluster_cpp
+    export LD_LIBRARY_PATH=${Y3GCC_DIR}/cuba/lib:$LD_LIBRARY_PATH
+    export http_proxy=http://theta-proxy.tmi.alcf.anl.gov:3128
+    export https_proxy=https://theta-proxy.tmi.alcf.anl.gov:3128
 
 This should result in a shell in which `nvcc` picks up the GCC 9.4.0 compiler that is part of the conda environment, rather than the GCC 9.3.0-17ubuntu1~20.04 that comes from the OS.
 It should also make `python` be Python v3.9.7, rather than 2.7.18 that is the system `python`.
 
 We are trying to use a conda environment, because that handles binary compatibility in installation.
 Installation of python libraries with `pip` would require more care to assure that any Fortran or C++ was compiled with the right compiler and with the right switches, for binary compatibility.
+
+## Building
+
+The following is done to build the software.
+Most needs to be done only once; the only software we are generally modifying is in `y3_cluster_cpp` itself.
+Do the setup above before going through these build steps.
+
+### Clone repositories
+
+Note that we have to use the HTTP protocol; `ssh` and `https` do not work from ThetaGPU compute nodes.
+You may get asked for a username and password, for `y3_cluster_cpp`.
+
+    mkdir -p ${Y3GCC_DIR}
+    cd ${Y3GCC_DIR}
+    # Clone repositories
+    git clone http://github.com/marcpaterno/cuba.git
+    git clone http://bitbucket.org/mpaterno/y3_cluster_cpp.git
+    git clone http://bitbucket.org/mpaterno/cubacpp.git
+
+
+### Install `cluster_toolkit`
+
+`cluster_toolkit` is not available from Conda, so I have to build it and install it myself.
+
+    wget https://github.com/marcpaterno/cluster_toolkit/archive/master.tar.gz
+    tar xf master.tar.gz
+    cd cluster_toolkit-master/
+    python3 setup.py install     # This will install into the environment
+    cd ../
+    rm -r cluster_toolkit-master/
+    rm master.tar.gz
+
 
 
