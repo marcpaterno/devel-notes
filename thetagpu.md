@@ -41,7 +41,7 @@ All the modules we will use will be installed in the environment we create, so t
     module load nvhpc-byo-compiler/21.7
     module load conda/2021-06-28
     export CUDA_HOME # because it is set, but not exported
-    conda create -p /grand/gccy3/cosmosis -c conda-forge astropy cffi cfitsio click cmake configparser cudatoolkit cxx-compiler cython emcee==2.2.1 fftw fitsio fortran-compiler future gsl jinja2 kombine matplotlib minuit2 mpi4py numba numpy nvcc_linux-64 openblas pybind11 pyccl pycparser pytest pyyaml sacc scikit-learn scipy six ucx
+    conda create -p /grand/gccy3/cosmosis -c conda-forge astropy cffi cfitsio click cmake configparser cudatoolkit cxx-compiler cython emcee==2.2.1 fftw fitsio fortran-compiler future gsl jinja2 kombine matplotlib minuit2 mpi4py numba numpy nvcc_linux-64 openblas pybind11 pyccl pycparser pytest pyyaml sacc scikit-learn scipy six ucx pytest-runner
 
 ## Working environment
 
