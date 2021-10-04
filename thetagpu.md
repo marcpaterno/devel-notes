@@ -63,6 +63,8 @@ The top-level for the software installation stack (as opposed to conda itself) i
     export LD_LIBRARY_PATH=${Y3GCC_DIR}/cuba/lib:$LD_LIBRARY_PATH
     export http_proxy=http://theta-proxy.tmi.alcf.anl.gov:3128
     export https_proxy=https://theta-proxy.tmi.alcf.anl.gov:3128
+    export HTTP_PROXY=http://theta-proxy.tmi.alcf.anl.gov:3128
+    export HTTPS_PROXY=https://theta-proxy.tmi.alcf.anl.gov:3128
 
 This should result in a shell in which `nvcc` picks up the GCC 9.4.0 compiler that is part of the conda environment, rather than the GCC 9.3.0-17ubuntu1~20.04 that comes from the OS.
 It should also make `python` be Python v3.9.7, rather than 2.7.18 that is the system `python`.
