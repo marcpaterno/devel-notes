@@ -49,7 +49,37 @@ I set up my working environment under `/grand/gccy3`.
 The conda environment installation is under `/grand/gccy3/cosmosis`.
 The top-level for the software installation stack (as opposed to conda itself) is `/grand/gccy3/top_dir`.
 
+Note that this working environment is the one to be use *after all the underlying products are built*.
+Before that, not everything here is available.
+Separate instructions are found below, in the sections on installing the underlying products, for the working environment for those steps.
 
+    module load conda/2021-06-28
+    export CUDA_HOME # because it is set, but not exported
+    export OMPI_MCA_opal_cuda_support=true
+    export OMPI_MCA_pml="ucx"
+    export OMPI_MCA_osc="ucx"
+    export Y3GCC_DIR=/grand/gccy3/topdir
+    export Y3_CLUSTER_CPP_DIR=${Y3GCC_DIR}/y3_cluster_cpp
+    export Y3_CLUSTER_WORK_DIR=${Y3GCC_DIR}/y3_cluster_cpp
+    export LD_LIBRARY_PATH=${Y3GCC_DIR}/cuba/lib:$LD_LIBRARY_PATH
+    export http_proxy=http://theta-proxy.tmi.alcf.anl.gov:3128
+    export https_proxy=https://theta-proxy.tmi.alcf.anl.gov:3128
+    export HTTP_PROXY=http://theta-proxy.tmi.alcf.anl.gov:3128
+    export HTTPS_PROXY=https://theta-proxy.tmi.alcf.anl.gov:3128
+    cd ${Y3GCC_DIR}/cosmosis
+    source config/setup-conda-cosmosis /grand/gccy3/cosmosis-2
+
+This should result in a shell in which `nvcc` picks up the GCC 9.4.0 compiler that is part of the conda environment, rather than the GCC 9.3.0-17ubuntu1~20.04 that comes from the OS.
+It should also make `python` be Python v3.9.7, rather than 2.7.18 that is the system `python`.
+
+We are trying to use a conda environment, because that handles binary compatibility in installation.
+Installation of python libraries with `pip` would require more care to assure that any Fortran or C++ was compiled with the right compiler and with the right switches, for binary compatibility.
+
+## Building
+
+The following is done to build the software.
+Most needs to be done only once; the only software we are generally modifying is in `y3_cluster_cpp` itself.
+Do the setup below before going through these build steps.
 
     module load conda/2021-06-28
     conda activate /grand/gccy3/cosmosis-2
@@ -65,18 +95,6 @@ The top-level for the software installation stack (as opposed to conda itself) i
     export https_proxy=https://theta-proxy.tmi.alcf.anl.gov:3128
     export HTTP_PROXY=http://theta-proxy.tmi.alcf.anl.gov:3128
     export HTTPS_PROXY=https://theta-proxy.tmi.alcf.anl.gov:3128
-
-This should result in a shell in which `nvcc` picks up the GCC 9.4.0 compiler that is part of the conda environment, rather than the GCC 9.3.0-17ubuntu1~20.04 that comes from the OS.
-It should also make `python` be Python v3.9.7, rather than 2.7.18 that is the system `python`.
-
-We are trying to use a conda environment, because that handles binary compatibility in installation.
-Installation of python libraries with `pip` would require more care to assure that any Fortran or C++ was compiled with the right compiler and with the right switches, for binary compatibility.
-
-## Building
-
-The following is done to build the software.
-Most needs to be done only once; the only software we are generally modifying is in `y3_cluster_cpp` itself.
-Do the setup above before going through these build steps.
 
 ### Clone repositories
 
@@ -123,7 +141,8 @@ Note that `LD_LIBRARY_PATH` above is already set to include the directory into w
 ### Build `cosmosis`
 
     cd ${Y3GCC_DIR}/cosmosis
-    source config/setup-conda-cosmosis cosmosis-2
+    conda deactivate  # 
+    source config/setup-conda-cosmosis /grand/gccy3/cosmosis-2
     make # TODO: figure out why MINUIT2 is not being found. There appears to be more trouble with the conda environment, because MINUIT2_INC points to a directory under $HOME, which does not exist.
 
 
