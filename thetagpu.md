@@ -84,11 +84,15 @@ Note that we have to use the HTTP protocol; `ssh` and `https` do not work from T
 You may get asked for a username and password, for `y3_cluster_cpp`.
 
     mkdir -p ${Y3GCC_DIR}
-    cd ${Y3GCC_DIR}
     # Clone repositories
     git clone http://github.com/marcpaterno/cuba.git
     git clone http://bitbucket.org/mpaterno/y3_cluster_cpp.git
     git clone http://bitbucket.org/mpaterno/cubacpp.git
+    git clone http://github.com/marcpaterno/gpuintegration.git
+    git clone -b develop http://bitbucket.org/mpaterno/cosmosis.git
+    cd cosmosis/
+    git clone -b develop http://bitbucket.org/mpaterno/cosmosis-standard-library.git
+    cd ${Y3GCC_DIR}
 
 
 ### Install `cluster_toolkit`
@@ -102,6 +106,30 @@ You may get asked for a username and password, for `y3_cluster_cpp`.
     cd ../
     rm -r cluster_toolkit-master/
     rm master.tar.gz
+
+### Build CUBA
+
+Note that `LD_LIBRARY_PATH` above is already set to include the directory into which we will be placing the CUBA dynamic library.
+
+    cd ${Y3GCC_DIR}/cuba
+    # We do not set CC, because it is already set by the environment modules
+    ./makesharedlib.sh
+    mkdir include
+    mkdir lib
+    mv cuba.h include/
+    mv libcuba.so lib/
+    cd ${Y3GCC_DIR}
+
+### Build `cosmosis`
+
+    cd ${Y3GCC_DIR}/cosmosis
+    source config/setup-conda-cosmosis cosmosis-2
+    make # TODO: figure out why MINUIT2 is not being found. There appears to be more trouble with the conda environment, because MINUIT2_INC points to a directory under $HOME, which does not exist.
+
+
+### Build `gpuintegration`
+
+### Build `y3_cluster_cpp`
 
 
 
