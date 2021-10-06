@@ -66,6 +66,7 @@ Separate instructions are found below, in the sections on installing the underly
     export https_proxy=https://theta-proxy.tmi.alcf.anl.gov:3128
     export HTTP_PROXY=http://theta-proxy.tmi.alcf.anl.gov:3128
     export HTTPS_PROXY=https://theta-proxy.tmi.alcf.anl.gov:3128
+    export PAGANI_DIR=/grand/gccy3/topdir/gpuintegration
     cd ${Y3GCC_DIR}/cosmosis
     source config/setup-conda-cosmosis /grand/gccy3/cosmosis-2
 
@@ -95,6 +96,7 @@ Do the setup below before going through these build steps.
     export https_proxy=https://theta-proxy.tmi.alcf.anl.gov:3128
     export HTTP_PROXY=http://theta-proxy.tmi.alcf.anl.gov:3128
     export HTTPS_PROXY=https://theta-proxy.tmi.alcf.anl.gov:3128
+    export PAGANI_DIR=/grand/gccy3/topdir/gpuintegration
 
 ### Clone repositories
 
@@ -143,10 +145,13 @@ Note that `LD_LIBRARY_PATH` above is already set to include the directory into w
     cd ${Y3GCC_DIR}/cosmosis
     conda deactivate  # 
     source config/setup-conda-cosmosis /grand/gccy3/cosmosis-2
-    make # TODO: figure out why MINUIT2 is not being found. There appears to be more trouble with the conda environment, because MINUIT2_INC points to a directory under $HOME, which does not exist.
-
+    make 
 
 ### Build `gpuintegration`
+
+    mkdir -p ${PAGANI_DIR}/cudaPagani/build
+    cd ${PAGANI_DIR}/cudaPagani/build
+    cmake ../ -DPAGANI_DIR=${PAGANI_DIR} -DCMAKE_BUILD_TYPE="Release"
 
 ### Build `y3_cluster_cpp`
 
