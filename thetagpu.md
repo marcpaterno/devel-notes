@@ -143,17 +143,20 @@ Note that `LD_LIBRARY_PATH` above is already set to include the directory into w
 ### Build `cosmosis`
 
     cd ${Y3GCC_DIR}/cosmosis
-    conda deactivate  # 
+    conda deactivate  #
     source config/setup-conda-cosmosis /grand/gccy3/cosmosis-2
-    make 
+    make
 
 ### Build `gpuintegration`
 
     mkdir -p ${PAGANI_DIR}/cudaPagani/build
     cd ${PAGANI_DIR}/cudaPagani/build
-    cmake ../ -DPAGANI_DIR=${PAGANI_DIR} -DCMAKE_BUILD_TYPE="Release"
+    cmake ../ -DPAGANI_TARGET_ARCH="80-real" -DPAGANI_DIR=${PAGANI_DIR} -DCMAKE_BUILD_TYPE="Release"
 
 ### Build `y3_cluster_cpp`
 
+    cd ${Y3_CLUSTER_CPP_DIR}
+    cmake -DUSE_CUDA=On -DY3GCC_TARGET_ARCH="80-real" -DPAGANI_DIR=${PAGANI_DIR} -DCMAKE_MODULE_PATH="${Y3_CLUSTER_CPP_DIR}/cmake;$Y3GCC_DIR/cubacpp/cmake/modules" -DCUBACPP_DIR=${Y3GCC_DIR}/cubacpp -DCUBA_DIR=${Y3GCC_DIR}/cuba -DCMAKE_BUILD_TYPE=Release .
 
-
+Sometimes this command produces a warning that `PAGANI_DIR` was defined and not used.
+This is incorrect; `PAGANI_DIR` is used in multiple `CMakeLists.txt` files.
