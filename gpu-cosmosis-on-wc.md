@@ -10,13 +10,15 @@ tests in MPI mode.
 ## The environment on the head node
 
     module load cuda11/11.1.1
+    export CURRENT_PROJECT=numint
+    export WORKHOME=/work1/${CURRENT_PROJECT}/$(id -un)
     export CUDA_HOME=/srv/software/cuda-toolkits/11.1.1
-    export PAGANI_DIR=/work1/numint/$(id -un)/gpuintegration/cudaPagani
+    export PAGANI_DIR=/work1/numint/$(id -un)/gpuintegration
     export Y3GCC_DIR=/work1/numint/$(id -un)
     export Y3_CLUSTER_CPP_DIR=${Y3GCC_DIR}/y3_cluster_cpp
     export Y3_CLUSTER_WORK_DIR=${Y3_CLUSTER_CPP_DIR}/release-build # This assumes an out-of-source build in this directory
-    cd /work1/numint/paterno/cosmosis
-    source /work1/numint/paterno/setup-conda
+    cd ${WORKHOME}/cosmosis
+    source /work1/numint/paterno/setup-conda      # Make conda available
     source config/setup-conda-cosmosis cosmosis   # This will activate the correct conda environment
 
 The last command will result in a message:
@@ -57,14 +59,14 @@ The environment variables needed are set up on the head node, above.
 
 ### For PAGANI
 
-The environment variable `$PAGANI_DIR` is set above to the directory containing PAGANI.
+The environment variable `$PAGANI_DIR` is set above to the directory containing `gpuintegration`.
 Remember to use the *editing* window (on the host) to modify code, and the *compiling/running* window
 (on the GPU node) when you want to make changes to PAGANI.
 
 For testing/adding to the PAGANI code, on the worker node,
 `cd` to the working directory:
 
-    cd $PAGANI_DIR
+    cd $PAGANI_DIR/cudaPagani
  
 Builds are done in the `build` subdirectory.
 
@@ -77,4 +79,4 @@ does not usually involve changing any of them).m
 
 
     # Set up a Release (optimized) build of y1_cluster_cpp
-    cmake -DPAGANI_DIR=${Y3GCC_DIR}/gpuintegration -DCMAKE_MODULE_PATH="${Y3_CLUSTER_CPP_DIR}/cmake;/work1/numint/paterno/cubacpp/cmake/modules" -DCUBACPP_DIR=/work1/numint/paterno/cubacpp -DCUBA_DIR=/work1/numint/paterno/cuba -DCMAKE_BUILD_TYPE=Release -G Ninja  .
+    cmake -DY3GCC_TARGET_ARCH="70-real" -DPAGANI_DIR=${PAGANI_DIR} -DCMAKE_MODULE_PATH="${Y3_CLUSTER_CPP_DIR}/cmake;/work1/numint/paterno/cubacpp/cmake/modules" -DCUBACPP_DIR=/work1/numint/paterno/cubacpp -DCUBA_DIR=/work1/numint/paterno/cuba -DCMAKE_BUILD_TYPE=Release -G Ninja  .
