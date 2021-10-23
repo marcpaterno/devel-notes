@@ -6,6 +6,15 @@ ThetaGPU is the GPU portion of Theta, and is distinct from the KNL nodes that ma
 
 This assumes you are looking to set up for development for the *gccy3* project, developing DES analysis code in CosmoSIS running on GPUs.
 
+## Checking quota
+
+Each project (e.g. *gccy3*) has a limited quota available on ThetaGPU.
+To check your quota, *from the login node* use the following (substitute your project name, as needed):
+
+    sbank-list-allocations -p gccy3 -r all
+
+This doesn't seem to work from a compute node.
+
 ## Getting access
 
 First log into `theta.alcf.anl.gov`.
