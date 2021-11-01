@@ -79,4 +79,4 @@ does not usually involve changing any of them).m
 
 
     # Set up a Release (optimized) build of y1_cluster_cpp
-    cmake -DY3GCC_TARGET_ARCH="70-real" -DPAGANI_DIR=${PAGANI_DIR} -DCMAKE_MODULE_PATH="${Y3_CLUSTER_CPP_DIR}/cmake;/work1/numint/paterno/cubacpp/cmake/modules" -DCUBACPP_DIR=/work1/numint/paterno/cubacpp -DCUBA_DIR=/work1/numint/paterno/cuba -DCMAKE_BUILD_TYPE=Release -G Ninja  .
+    cmake -DUSE_CUDA=On -DY3GCC_TARGET_ARCH="70-real" -DPAGANI_DIR=${PAGANI_DIR} -DCMAKE_MODULE_PATH="${Y3_CLUSTER_CPP_DIR}/cmake;/work1/numint/paterno/cubacpp/cmake/modules" -DCUBACPP_DIR=/work1/numint/paterno/cubacpp -DCUBA_DIR=/work1/numint/paterno/cuba -DCMAKE_BUILD_TYPE=Release -G Ninja  ..
