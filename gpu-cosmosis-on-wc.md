@@ -18,8 +18,8 @@ tests in MPI mode.
     export Y3_CLUSTER_CPP_DIR=${Y3GCC_DIR}/y3_cluster_cpp
     export Y3_CLUSTER_WORK_DIR=${Y3_CLUSTER_CPP_DIR}/release-build # This assumes an out-of-source build in this directory
     cd ${WORKHOME}/cosmosis
-    source /work1/numint/paterno/setup-conda      # Make conda available
-    source config/setup-conda-cosmosis cosmosis   # This will activate the correct conda environment
+    source /work1/numint/paterno/setup-anaconda-conda   # Make conda available
+    source config/setup-conda-cosmosis cosmosis         # This will activate the correct conda environment
 
 The last command will result in a message:
 
