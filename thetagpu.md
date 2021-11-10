@@ -48,7 +48,7 @@ Because this version of conda is provided by an environment module, *you can not
 All the modules we will use will be installed in the environment we create, so this should not be an actual impediment.
 
     module load nvhpc-byo-compiler/21.7
-    module load conda/2021-06-28
+    module load conda/2021-09-22
     export CUDA_HOME # because it is set, but not exported
     conda create -p /grand/gccy3/cosmosis-2 -c conda-forge astropy cffi cfitsio click cmake configparser cudatoolkit cxx-compiler cython emcee==2.2.1 fftw fitsio fortran-compiler future gsl jinja2 kombine matplotlib minuit2 mpi4py numba numpy nvcc_linux-64 openblas pybind11 pyccl pycparser pytest pyyaml sacc scikit-learn scipy six ucx pytest-runner
 
@@ -62,7 +62,7 @@ Note that this working environment is the one to be use *after all the underlyin
 Before that, not everything here is available.
 Separate instructions are found below, in the sections on installing the underlying products, for the working environment for those steps.
 
-    module load conda/2021-06-28
+    module load conda/2021-09-22
     export CUDA_HOME # because it is set, but not exported
     export OMPI_MCA_opal_cuda_support=true
     export OMPI_MCA_pml="ucx"
@@ -118,7 +118,7 @@ You may get asked for a username and password, for `y3_cluster_cpp`.
     git clone http://bitbucket.org/mpaterno/y3_cluster_cpp.git
     git clone http://bitbucket.org/mpaterno/cubacpp.git
     git clone http://github.com/marcpaterno/gpuintegration.git
-    git clone -b develop http://bitbucket.org/mpaterno/cosmosis.git
+    git clone -b better-exceptions http://bitbucket.org/mpaterno/cosmosis.git
     cd cosmosis/
     git clone -b develop http://bitbucket.org/mpaterno/cosmosis-standard-library.git
     cd ${Y3GCC_DIR}
