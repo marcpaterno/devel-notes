@@ -24,22 +24,35 @@ See below for another option: `mamba`, which is a potentially faster alternative
 
 ## Creating a new installation to match an existing one
 
-I have found the most convenient way to create a new `conda` environment to match an existing one is to use:
+I have found the most convenient way to create a new `conda` environment to match an existing one is to use the `conda env export` function as shown below.
+However, two important cautions must be kept in mind.
 
-    conda env export --from-history -n <environment name>
+1. *Make sure to remove any mention of the `defaults` channel in the output YAML file.*
+2. *Make sure to edit the path to the environment to that which you want to use.*
+3. *Make sure the name of the environment matches the prefix path you provide, if the path is into one of the ones that `conda` manages.*
+
+The command to generate the YAML file (which you must edit, as noted above) is:
+
+    # Use either "-n environment-name" or "-p path-to-environment" to identify the environment you want to copy
+    conda env export --from-history [-n <environment-name> | -p <path-to-environment>] > environment.yaml
 
 The `--from-history` is critical.
 That is the flag that limits the report to include only those packages that were directly requested during the creation (or updating) of the environment.
 When moving to a different OS, or from Anaconda to miniforge, the detailed list of dependencies calculated by `conda` can vary.
 By including only what was directly requested, this allows `conda` to find the set of supporting packages that are needed and consistent.
 
+Befor creating the new environment, edit the `environment.yaml` file as noted above.
+To create the new environment, based on that YAML file, the command is:
+
+    conda env create -f environment.yaml
+
 ## Cautions
 
 ### Pay attention to `.condarc` files
 
-A centralized installation of any version of conda includes a site-level config file `.condarc` somewhere in the system-managed directories.
+A centralized installation of any version of conda includes a site-level configuration file `.condarc` somewhere in the system-managed directories.
 The command `conda info` will tell you where this is (look for "populated config files"; it is typically the first one listed).
-You probably also have a user-level config file (typically at `$HOME/.condarc`.
+You probably also have a user-level configuration file (typically at `$HOME/.condarc`.
 Finally, each environment *might* also contain a `.condarc` file specific to that channel.
 
 To avoid entanglements with licensed software from Anaconda, Inc., you need to make sure none of your `.condarc` files includes the channel `defaults`.
