@@ -27,9 +27,9 @@ See below for another option: `mamba`, which is a potentially faster alternative
 I have found the most convenient way to create a new `conda` environment to match an existing one is to use the `conda env export` function as shown below.
 However, two important cautions must be kept in mind.
 
-1. *Make sure to remove any mention of the `defaults` channel in the output YAML file.*
-2. *Make sure to edit the path to the environment to that which you want to use.*
-3. *Make sure the name of the environment matches the prefix path you provide, if the path is into one of the ones that `conda` manages.*
+1. Make sure to remove any mention of the `defaults` channel in the output YAML file.
+2. Make sure to edit the path to the environment to that which you want to use.
+3. Make sure the name of the environment matches the prefix path you provide, if the path is into one of the ones that `conda` manages.
 
 The command to generate the YAML file (which you must edit, as noted above) is:
 
