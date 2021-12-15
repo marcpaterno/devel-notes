@@ -68,7 +68,10 @@ will be placing the CUBA dynamic library.
 
 ### Build `gpuintegration`
 
+There is nothing to build -- everything we use is in a header.
+
 ### Build `y3_cluster_cpp`
+
 
 ## Working in the environment
 
