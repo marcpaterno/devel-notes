@@ -55,6 +55,7 @@ Note that `LD_LIBRARY_PATH` is set above to include the directory into which we
 will be placing the CUBA dynamic library.
 
     cd ${Y3GCC_DIR}/cuba
+    cd cuba
     CC=$(which gcc) ./configure
     ./makesharedlib.sh
     mkdir include
