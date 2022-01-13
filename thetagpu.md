@@ -160,6 +160,8 @@ use the commands below to set up the environment:
     export PYTHONPATH=${COSMOSIS_SRC_DIR} # There is no previous value of PYTHONPATH
     export PATH=${COSMOSIS_SRC_DIR}/bin:${PATH}
     export PAGANI_DIR=${TOPDIR}/gpuintegration
+    export Y3_CLUSTER_CPP_DIR=${TOPDIR}/y3_cluster_cpp
+    export Y3_CLUSTER_WORK_DIR=${TOPDIR}/y3_cluster_cpp
 
 ## Obtaining the other requirements for `y3_cluster_cpp`
 
