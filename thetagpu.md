@@ -1,12 +1,14 @@
 ## Access to thetaGPU
 
-We first get onto a *theta* login node,
-and then load the module that makes all Cobalt commands
+We first get onto a *theta* login node.
+
+    ssh theta.alcf.anl.gov    # the MobilePASS+ application gives the password
+
+Then load the module that makes all Cobalt commands
 use their *thetaGPU* versions.
 We also make `tmux` available,
 because `tmux` rocks:
 
-    ssh theta.alcf.anl.gov    # the MobilePASS+ application gives the password
     module load cobalt/cobalt-gpu
     module load tmux
 
@@ -15,6 +17,8 @@ But to *build* software,
 we need to build on a *thetaGPU* compute node.
 Cross-compiling for *thetaGPU* from the *theta* login node is possible at this time.
 
+    # If you are working on a project other than gccy3, then use the name of that
+    # project as the argument for -A in the qsub command
     qsub -I -q single-gpu -n 1 -t 60 -A gccy3 --attrs=pubnet
 
 This gives access to a single GPU.
@@ -57,6 +61,8 @@ nor do we use `conda` to install any compilers.
     conda create -p /grand/gccy3/cosmosis-4 -c conda-forge libgcc-ng=9.3.0 libgfortran5=9.3.0 astropy cffi cfitsio click configparser cython emcee==2.2.1 fftw fitsio future gsl jinja2 kombine matplotlib minuit2 numba numpy openblas pycparser pytest pyyaml scipy six pytest-runner ripgrep
 
 Note that we have specified versions of `libgcc-ng` and `libgfortran5` so that we end up with are getting builds that are based on our system compiler suite, which is GCC 9.3.0.
+The `ripgrep` package is not needed to build any of our software
+but is very useful for searching through code.
 
 ## Installing the remaining Python modules
 
@@ -136,6 +142,7 @@ To do so,
 use the commands below to set up the environment:
 
     module load conda/2021-11-30
+    module load cmake-3.20.3-gcc-9.3.0-57eqw4f
     conda activate /grand/gccy3/cosmosis-4
     export TOPDIR=/grand/gccy3/topdir
     export COSMOSIS_OMP=1
@@ -149,9 +156,10 @@ use the commands below to set up the environment:
     export LAPACK_LIB=$CONDA_PREFIX/lib
     export LAPACK_LINK="-L${LAPACK_LIB} -llapack -lblas"
     export COSMOSIS_LIB_PATH=${COSMOSIS_SRC_DIR}/cosmosis/datablock/:${COSMOSIS_SRC_DIR}/cosmosis-standard-library/likelihood/planck/plc-1.0/lib/:${COSMOSIS_SRC_DIR}/cosmosis-standard-library/likelihood/planck2015/plc-2.0/lib/:${COSMOSIS_SRC_DIR}/cosmosis-standard-library/likelihood/planck2015/plc-2.0/builddir:${CFITSIO_LIB}
-    export LD_LIBRARY_PATH=${COSMOSIS_LIB_PATH}:${LD_LIBRARY_PATH}
+    export LD_LIBRARY_PATH=${COSMOSIS_LIB_PATH}:${TOPDIR}/cuba/lib:${LD_LIBRARY_PATH}
     export PYTHONPATH=${COSMOSIS_SRC_DIR} # There is no previous value of PYTHONPATH
     export PATH=${COSMOSIS_SRC_DIR}/bin:${PATH}
+    export PAGANI_DIR=${TOPDIR}/gpuintegration
 
 ## Obtaining the other requirements for `y3_cluster_cpp`
 
@@ -214,6 +222,26 @@ So generally you only need to clone the repository.
     cd ${TOPDIR}
     git clone http://github.com/marcpaterno/gpuintegration.git
 
+### If you want to build `cudaPagani`
+
+You only need to bother with this if you plan to modify the CUDA/C++ code
+in `gpuintegration` (in particular, in `cudaPagani`).
+
+    cd ${PAGANI_DIR}
+    mkdir build
+    # Change the CMAKE_BUILD_TYPE if you want a debug build for testing.
+    # Note you can also have side-by-side builds; just put them into different
+    # subdirectories.
+    cmake -DPAGANI_DIR=$PAGANI_DIR -DCMAKE_BUILD_TYPE=Release -DPAGANI_TARGET_ARCH=80-real ..
+    make -j 8 # adjust the parallelism as you like
+    ctest     # all the tests should pass
+
 ## Getting `y3_cluster_cpp`
 
 It is assumed that everyone wants to do development of `y3_cluster_cpp` itself.
+
+    cd ${TOPDIR}
+    git clone http://bitbucket.org/mpaterno/y3_cluster_cpp.git
+    cd y3_cluster_cpp
+    cmake -DCMAKE_MODULE_PATH="${Y3_CLUSTER_CPP_DIR}/cmake;${Y3GCC_DIR}/cubacpp/cmake/modules" -DCUBACPP_DIR=${Y3GCC_DIR}/cubacpp -DCUBA_DIR=${Y3GCC_DIR}/cuba  -DCMAKE_BUILD_TYPE=Release  ${PWD}
+
