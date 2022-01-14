@@ -23,6 +23,37 @@ Cross-compiling for *thetaGPU* from the *theta* login node is possible at this t
 
 This gives access to a single GPU.
 
+## Setting up an already-built CosmoSIS
+
+If you are working on `y3_cluster_cpp`
+but do *not* need to modify code in CosmoSIS itself,
+then I recommend sharing my build of CosmoSIS and its dependencies.
+To do so,
+use the commands below to set up the environment:
+
+    module load conda/2021-11-30
+    module load cmake-3.20.3-gcc-9.3.0-57eqw4f
+    conda activate /grand/gccy3/cosmosis-4
+    export TOPDIR=/grand/gccy3/topdir
+    export COSMOSIS_OMP=1
+    export COSMOSIS_SRC_DIR=${TOPDIR}/cosmosis
+    export GSL_INC=$CONDA_PREFIX/include
+    export GSL_LIB=$CONDA_PREFIX/lib
+    export CFITSIO_INC=$CONDA_PREFIX/include
+    export CFITSIO_LIB=$CONDA_PREFIX/lib
+    export FFTW_INCLUDE_DIR=$CONDA_PREFIX/include
+    export FFTW_LIBRARY=$CONDA_PREFIX/lib
+    export LAPACK_LIB=$CONDA_PREFIX/lib
+    export LAPACK_LINK="-L${LAPACK_LIB} -llapack -lblas"
+    export COSMOSIS_LIB_PATH=${COSMOSIS_SRC_DIR}/cosmosis/datablock/:${COSMOSIS_SRC_DIR}/cosmosis-standard-library/likelihood/planck/plc-1.0/lib/:${COSMOSIS_SRC_DIR}/cosmosis-standard-library/likelihood/planck2015/plc-2.0/lib/:${COSMOSIS_SRC_DIR}/cosmosis-standard-library/likelihood/planck2015/plc-2.0/builddir:${CFITSIO_LIB}
+    export LD_LIBRARY_PATH=${COSMOSIS_LIB_PATH}:${TOPDIR}/cuba/lib:${LD_LIBRARY_PATH}
+    export PYTHONPATH=${COSMOSIS_SRC_DIR} # There is no previous value of PYTHONPATH
+    export PATH=${COSMOSIS_SRC_DIR}/bin:${PATH}
+    export PAGANI_DIR=${TOPDIR}/gpuintegration
+    export Y3_CLUSTER_CPP_DIR=${TOPDIR}/y3_cluster_cpp
+    export Y3_CLUSTER_WORK_DIR=${TOPDIR}/y3_cluster_cpp
+
+
 ## Load modules
 
 We rely on system (Lmod) modules for system-related items that are very specific to thetaGPU.
@@ -133,35 +164,6 @@ We do not do a parallel make
 because not all of the components included in the CSL
 support parallel make.
 
-## Setting up an already-built CosmoSIS
-
-If you are working on `y3_cluster_cpp`
-but do *not* need to modify code in CosmoSIS itself,
-then I recommend sharing my build of CosmoSIS and its dependencies.
-To do so,
-use the commands below to set up the environment:
-
-    module load conda/2021-11-30
-    module load cmake-3.20.3-gcc-9.3.0-57eqw4f
-    conda activate /grand/gccy3/cosmosis-4
-    export TOPDIR=/grand/gccy3/topdir
-    export COSMOSIS_OMP=1
-    export COSMOSIS_SRC_DIR=${TOPDIR}/cosmosis
-    export GSL_INC=$CONDA_PREFIX/include
-    export GSL_LIB=$CONDA_PREFIX/lib
-    export CFITSIO_INC=$CONDA_PREFIX/include
-    export CFITSIO_LIB=$CONDA_PREFIX/lib
-    export FFTW_INCLUDE_DIR=$CONDA_PREFIX/include
-    export FFTW_LIBRARY=$CONDA_PREFIX/lib
-    export LAPACK_LIB=$CONDA_PREFIX/lib
-    export LAPACK_LINK="-L${LAPACK_LIB} -llapack -lblas"
-    export COSMOSIS_LIB_PATH=${COSMOSIS_SRC_DIR}/cosmosis/datablock/:${COSMOSIS_SRC_DIR}/cosmosis-standard-library/likelihood/planck/plc-1.0/lib/:${COSMOSIS_SRC_DIR}/cosmosis-standard-library/likelihood/planck2015/plc-2.0/lib/:${COSMOSIS_SRC_DIR}/cosmosis-standard-library/likelihood/planck2015/plc-2.0/builddir:${CFITSIO_LIB}
-    export LD_LIBRARY_PATH=${COSMOSIS_LIB_PATH}:${TOPDIR}/cuba/lib:${LD_LIBRARY_PATH}
-    export PYTHONPATH=${COSMOSIS_SRC_DIR} # There is no previous value of PYTHONPATH
-    export PATH=${COSMOSIS_SRC_DIR}/bin:${PATH}
-    export PAGANI_DIR=${TOPDIR}/gpuintegration
-    export Y3_CLUSTER_CPP_DIR=${TOPDIR}/y3_cluster_cpp
-    export Y3_CLUSTER_WORK_DIR=${TOPDIR}/y3_cluster_cpp
 
 ## Obtaining the other requirements for `y3_cluster_cpp`
 
