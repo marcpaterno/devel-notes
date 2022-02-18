@@ -249,5 +249,5 @@ It is assumed that everyone wants to do development of `y3_cluster_cpp` itself.
     cd y3_cluster_cpp
     # Clean up a previous run of cmake, if necessary
     # rm -r CMakeFiles/ CTestTestfile.cmake  CMakeCache.txt cmake_install.cmake Makefile Testing/
-    cmake -DUSE_CUDA=On -DY3GCC_TARGET_ARCH=80-real -DGSL_ROOT_DIR=$CONDA_PREFIX -DCMAKE_MODULE_PATH="${TOPDIR}/cubacpp/cmake/modules" -DCUBACPP_DIR=${TOPDIR}/cubacpp -DCUBA_DIR=${TOPDIR}/cuba  -DCMAKE_BUILD_TYPE=Release  ${PWD}
+    cmake -DUSE_CUDA=On -DY3GCC_TARGET_ARCH=80-real -DPAGANI_DIR=${PAGANI_DIR} -DGSL_ROOT_DIR=$CONDA_PREFIX -DCMAKE_MODULE_PATH="${TOPDIR}/cubacpp/cmake/modules" -DCUBACPP_DIR=${TOPDIR}/cubacpp -DCUBA_DIR=${TOPDIR}/cuba  -DCMAKE_BUILD_TYPE=Release  ${PWD}
 
