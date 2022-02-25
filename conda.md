@@ -5,9 +5,9 @@ It also manages the installation of software into such environments.
 It primarily is used to support the installation of Python-based software, but it is not limited to that.
 It can be used in conjunction with `pip` but care needs to be taken when doing so.
 
-## Do not use Anaconda
+## Do not use Anaconda or Miniconda
 
-Anaconda has restrictive licensing requirements that make it inappropriate for use at Fermilab.
+Anaconda and Miniconda have restrictive licensing requirements that make them inappropriate for use at Fermilab.
 Some alternatives work just as well and are fully free software.
 
 ## Install using Miniforge
@@ -19,8 +19,9 @@ That is what is described here.
 On my Mac laptop, I usually install things with Homebrew when possible.
 *In this case, the Homebrew installation is not convenient to use.*
 The default, from this installation, is to put environments in a directory under the installation directory.
-When Homebrew updates Miniconda, all environments are then lost.
-As a result, I recommend using the *shell installer* for miniforge-conda; this does an installation under `$HOME` which automatic updates do not mangle. The installed version of `conda` can be updated with the usual `conda update conda` command.
+When Homebrew updates miniforge-conda, all environments are then lost.
+As a result, I recommend using the *shell installer* for miniforge-conda; this does an installation under `$HOME` which automatic updates do not mangle.
+The installed version of `conda` can be updated with the usual `conda update conda` command.
 
 See below for another option: `mamba`, which is a potentially faster alternative implementation of `conda`.
 
@@ -40,7 +41,7 @@ The command to generate the YAML file (which you must edit, as noted above) is:
 
 The `--from-history` is critical.
 That is the flag that limits the report to include only those packages that were directly requested during the creation (or updating) of the environment.
-When moving to a different OS, or from Anaconda to miniforge, the detailed list of dependencies calculated by `conda` can vary.
+When moving to a different OS, or from Anaconda or Miniconda to miniforge, the detailed list of dependencies calculated by `conda` can vary.
 By including only what was directly requested, this allows `conda` to find the set of supporting packages that are needed and consistent.
 
 Before creating the new environment, edit the `environment.yaml` file as noted above.
