@@ -7,7 +7,9 @@ It can be used in conjunction with `pip` but care needs to be taken when doing s
 
 ## Do not use Anaconda or Miniconda
 
-Anaconda and Miniconda have restrictive licensing requirements that make them inappropriate for use at Fermilab.
+Anaconda and Miniconda have restrictive licensing requirements that may make them inappropriate for use at Fermilab.
+In the past, Anaconda Inc. has restricted Fermilab's use of their curated repository.
+While this restriction was eventually lifted, it is hard to be certain that it will never be reinstated.
 Some alternatives work just as well and are fully free software.
 
 ## Install using Miniforge
