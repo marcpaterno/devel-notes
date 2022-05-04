@@ -11,7 +11,10 @@ consider "git flow", which is documented in many places.
 Assuming you have already cloned the repository:
 
     cd <repo>
-    git checkout -b work
+    git switch -c work
+    # If that doesn't work because your installation of git is too old,
+    # try:
+    #   git checkout -b work
 
     ... do your writing ...
     ... Make lots of small commits ...
