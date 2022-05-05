@@ -3,6 +3,25 @@
 These notes are for working on Firecrown, and the related connectors (right now,
 only the CosmoSIS connector) on my laptop.
 
+# Preparation work
+
+The following steps need to be done only once (or once per clean re-installation of everything).
+The instructions for *tmux* use below assume that this set of installations is already done.
+
+We assume that the `firecrown` code is already checked out.
+
+    # Create the conda environment we'll use
+    export TOP_DIR=/Users/paterno/MyProjects/firecrown-work
+    export CSL_DIR=${TOP_DIR}/cosmosis-standard-library
+    mkdir -p ${TOP_DIR}
+    source ~/bin/setup-conda
+    conda create --name for_fc_both -c conda-forge cosmosis cosmosis-build-standard-library sacc pyccl fitsio fuzzywuzzy urllib3 PyYAML portalocker idna dill charset-normalizer requests matplotlib flake8 pylint black
+    conda activate for_fc_both
+    python -m pip install cobaya
+    source ${CONDA_PREFIX}/bin/cosmosis-configure
+    cd ${TOP_DIR}
+    cosmosis-build-standard-library
+
 # tmux
 
 I'm using a `tmux` session in order to be able to keep the various environments set up.
@@ -15,20 +34,24 @@ windown is somewhat complilcated.
 
 Do this in the first `tmux` window. Name it *FC-build*.
 
-    cd ~/repos/firecrown/
-	source ~/bin/setup-conda
-	conda activate firecrown
+    source ~/bin/setup-conda
+    conda activate for_fc_both
+    cd ~/repos/firecrown
 
 ## CosmoSIS  window
 
 Do this in the second `tmux` window. Name it *CosmoSIS*.
 
-    cd ~/MyProjects/firecrown-work/cosmosis
     source ~/bin/setup-conda
-    source config/setup-conda-cosmosis firecrown
-    export PYTHONPATH=${PYTHONPATH}/Users/paterno/repos/firecrown/build/lib # Note there is no ':' in the command
-    export FIRECROWN_EXAMPLES_DIR=/Users/paterno/repos/firecrown/examples
-    export FIRECROWN_DIR=/Users/paterno/repos/firecrown/build/lib
+    conda activate for_fc_both
+    source ${CONDA_PREFIX}/bin/cosmosis-configure
+    export CSL_DIR=${TOP_DIR}/cosmosis-standard-library
+    export TOP_DIR=~/MyProjects/firecrown-work
+    cd ${TOP_DIR}
+    # Note that there is no ':' in the following command
+    export PYTHONPATH=~/repos/firecrown/build/lib
+    export FIRECROWN_EXAMPLES_DIR=~/repos/firecrown/examples
+    export FIRECROWN_DIR=~/repos/firecrown/build/lib
 
 
 # Development
