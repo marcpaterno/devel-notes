@@ -45,8 +45,8 @@ Do this in the second `tmux` window. Name it *CosmoSIS*.
     source ~/bin/setup-conda
     conda activate for_fc_both
     source ${CONDA_PREFIX}/bin/cosmosis-configure
-    export CSL_DIR=${TOP_DIR}/cosmosis-standard-library
     export TOP_DIR=~/MyProjects/firecrown-work
+    export CSL_DIR=${TOP_DIR}/cosmosis-standard-library
     cd ${TOP_DIR}
     # Note that there is no ':' in the following command
     export PYTHONPATH=~/repos/firecrown/build/lib
