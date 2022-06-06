@@ -5,6 +5,7 @@
 I am building `y3_cluster_cpp` on Perlmutter.
 This build is *similar* to the one we recommend for others' use, but it contains my own copies of some of the basic repositories.
 This is so that I can do development of `cuba_cpp` and `gpuintegration` as well as `y3_cluster_cpp`.
+See also the [Y3 cluster code instructions for Perlmutter](https://bitbucket.org/mpaterno/y3_cluster_cpp/wiki/build_on_perlmutter).
 
 ## Setup for regular work
 
