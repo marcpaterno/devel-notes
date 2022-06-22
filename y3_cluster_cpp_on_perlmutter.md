@@ -12,7 +12,7 @@ See also the [Y3 cluster code instructions for Perlmutter](https://bitbucket.org
 This assumes that a build is already done.
 
     export SHARED_TOP_DIR=/global/common/software/des/annis
-    export TOP_DIR=/global/common/software/des/paterno
+    export TOP_DIR=/global/common/software/des/$(id -un)
     export MY_TOP_DIR=$TOP_DIR
     export COSMOSIS_REPO_DIR=${SHARED_TOP_DIR}/cosmosis
     export CSL_DIR=${SHARED_TOP_DIR}/cosmosis-standard-library
