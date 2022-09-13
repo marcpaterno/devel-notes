@@ -26,10 +26,10 @@ On WC:
 
 This defines:
 
-#. `SYNSRC`: the location of the source code repository.
-#. `SYNINSTALL`: the location into which the build code will be installed.
-#. `SYNBLD`: the directory in which to run `cmake` and to build the code.
-#. `PY_EXE`: the full path to the Python executable of choice.
+1. `SYNSRC`: the location of the source code repository.
+2. `SYNINSTALL`: the location into which the build code will be installed.
+3. `SYNBLD`: the directory in which to run `cmake` and to build the code.
+4. `PY_EXE`: the full path to the Python executable of choice.
 
 Building the code can be done on the head node `wc.fnal.gov`.
 
