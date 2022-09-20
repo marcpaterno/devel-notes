@@ -1,7 +1,8 @@
 # Firecrown work
 
-These notes are for working on Firecrown, and the related connectors (right now,
-only the CosmoSIS connector) on my laptop.
+These notes are for working on Firecrown, and the related connectors
+(right now, Cobaya and CosmoSIS)
+on my laptop.
 
 # Preparation work
 
@@ -33,14 +34,19 @@ windown is somewhat complilcated.
 ## Firecrown build window
 
 Do this in the first `tmux` window. Name it *FC-build*.
+This is the window in which you can *rebuild firecrown*
+and *run pytest tests*.
+You can also run *black* and *pylint* and *mypy*.
 
     source ~/bin/setup-conda
     conda activate for_fc_both
     cd ~/repos/firecrown
 
-## CosmoSIS  window
+## SI window
 
-Do this in the second `tmux` window. Name it *CosmoSIS*.
+Do this in the second `tmux` window.
+Name it *CosmoSIS*.
+This is where you can run the (few) CosmoSIS and Cobaya demos.
 
     source ~/bin/setup-conda
     conda activate for_fc_both
@@ -53,8 +59,9 @@ Do this in the second `tmux` window. Name it *CosmoSIS*.
     export FIRECROWN_EXAMPLES_DIR=~/repos/firecrown/examples
     export FIRECROWN_DIR=~/repos/firecrown/build/lib
 
-
 # Development
+
+## Building firecrown
 
 To *build* firecrown, in the *FC-build* window, do:
 
@@ -62,7 +69,13 @@ To *build* firecrown, in the *FC-build* window, do:
 
 This will generate stuff in the `/Users/paterno/repos/firecrown/build` directory.
 
+## Running CosmoSIS
+
 To *run cosmosis*, using firecrown, use the *CosmoSIS* window.
 
     cosmosis $FIRECROWN_EXAMPLES_DIR/des_y1_3x2pt/des_y1_3x2pt.ini
+ 
+## Running Cobaya
+
+What does one do to run Cobaya?
 
