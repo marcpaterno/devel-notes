@@ -7,18 +7,25 @@ Follow the instructions here for establishing the proper environment on the head
 node (wc.fnal.gov) *before* allocating a node for interactive use or for running
 tests in MPI mode.
 
+See the final section to learn how the working environment was actually created,
+including the cloning of repositories
+(both CSL and `y3_cluster_cpp`)
+and the creation of the `conda` environment containing CosmoSIS.
+Note that we're using compilers from the `conda` environment here.
+
 ## The environment on the head node
 
-    module load cuda11/11.1.1
+    export MY_CUDA_VERSION="11.6.0"
+    module load cuda11/${MY_CUDA_VERSION}
     export CURRENT_PROJECT=numint
     export WORKHOME=/work1/${CURRENT_PROJECT}/$(id -un)
-    export CUDA_HOME=/srv/software/cuda-toolkits/11.1.1
+    export CUDA_HOME=/srv/software/cuda-toolkits/${MY_CUDA_VERSION}
     export PAGANI_DIR=/work1/numint/$(id -un)/gpuintegration
     export Y3GCC_DIR=/work1/numint/$(id -un)
     export Y3_CLUSTER_CPP_DIR=${Y3GCC_DIR}/y3_cluster_cpp
-    export Y3_CLUSTER_WORK_DIR=${Y3_CLUSTER_CPP_DIR}/release-build # This assumes an out-of-source build in this directory
-    cd ${WORKHOME}/cosmosis
-    source /work1/numint/paterno/setup-anaconda-conda   # Make conda available
+    export Y3_CLUSTER_WORK_DIR=${Y3_CLUSTER_CPP_DIR}/release-build  # This assumes an out-of-source build in this directory
+    source ${WORKHOME}/setup-mamba-conda   # Make conda available
+    
     source config/setup-conda-cosmosis cosmosis         # This will activate the correct conda environment
 
 The last command will result in a message:
@@ -80,3 +87,24 @@ does not usually involve changing any of them).m
 
     # Set up a Release (optimized) build of y1_cluster_cpp
     cmake -DUSE_CUDA=On -DY3GCC_TARGET_ARCH="70-real" -DPAGANI_DIR=${PAGANI_DIR} -DCMAKE_MODULE_PATH="${Y3_CLUSTER_CPP_DIR}/cmake;/work1/numint/paterno/cubacpp/cmake/modules" -DCUBACPP_DIR=/work1/numint/paterno/cubacpp -DCUBA_DIR=/work1/numint/paterno/cuba -DCMAKE_BUILD_TYPE=Release -G Ninja  ..
+
+
+## Appendix: building the environment from scratch
+
+I am using `mamba` to provide `conda` because the solver is faster.
+
+** N.B.: This environment is currently not working. **
+
+    # create the conda environment
+    export CURRENT_PROJECT=numint
+    export WORKHOME=/work1/${CURRENT_PROJECT}/$(id -un)
+    export PAGANI_DIR=/work1/numint/$(id -un)/gpuintegration
+    export Y3GCC_DIR=/work1/numint/$(id -un)
+    export Y3_CLUSTER_CPP_DIR=${Y3GCC_DIR}/y3_cluster_cpp
+    export Y3_CLUSTER_WORK_DIR=${Y3_CLUSTER_CPP_DIR}/release-build  # This assumes an out-of-source build in this directory
+    source ${WORKHOME}/setup-mamba-conda   # Make conda available
+    # Creating the environment is a slow step. We aren't nailing down specific
+    # versions of things, so doing this again will yield a slightly different
+    # environment. We hope not to be so sensitive to versions that this will
+    # matter.
+    mamba create -n for_y3_cluster_cpp black cffi clang-format cmake cosmosis cosmosis-build-standard-library cudatoolkit gdb git kombine ninja nvcc_linux-64 openblas ripgrep tmux vim
