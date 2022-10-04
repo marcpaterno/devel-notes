@@ -8,8 +8,8 @@ access, is obtained using SLURM commands.
 
 When working on Synergia I try to follow Eric's work plan:
 
-#. Build code on the head node.
-#. Launch tests from the head node.
+1. Build code on the head node.
+2. Launch tests from the head node.
     * But tests run on execution nodes
     * You have to run on the architecture for which you built.
 
