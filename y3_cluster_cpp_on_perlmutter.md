@@ -1,5 +1,9 @@
 # y3_cluster_cpp environment on Perlmutter
 
+## Related
+
+* [Y3 cluster cpp on WC](gpu-cosmosis-on-wc.md)
+
 ## Context
 
 I am building `y3_cluster_cpp` on Perlmutter.
