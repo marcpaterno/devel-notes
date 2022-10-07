@@ -9,9 +9,11 @@ on my laptop.
 This assumes the preparation below has already been done.
 That only needs to be done once.
 
-    cd ~/repos/firecrown
     source setup-mamba
     mamba activate proto-firecrown-si
+    export FIRECROWN_DIR=~/repos/firecrown
+    export CSL_DIR=${CONDA_PREFIX}/cosmosis-standard-library
+    cd ${FIRECROWN_DIR}
 
 ### Development and code hygiene
 
@@ -35,7 +37,7 @@ To do the code hygiene thing:
 ### Running examples
 
     cd ${FIRECROWN_DIR}/examples/cosmicshear
-    python generate_cosmicsheardata.py
+    python generate_cosmicshear_data.py
     cosmosis cosmicshear.ini
 
     cd ${FIRECROWN_DIR}/examples/des_y1_3x2pt
