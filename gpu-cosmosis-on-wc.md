@@ -24,9 +24,9 @@ Note that we're using compilers from the `conda` environment here.
     export Y3GCC_DIR=/work1/numint/$(id -un)
     export Y3_CLUSTER_CPP_DIR=${Y3GCC_DIR}/y3_cluster_cpp
     export Y3_CLUSTER_WORK_DIR=${Y3_CLUSTER_CPP_DIR}/release-build  # This assumes an out-of-source build in this directory
+    export CSL_DIR=${WORKHOME}/cosmosis-standard-library
     source ${WORKHOME}/setup-mamba-conda   # Make conda available
-    
-    source config/setup-conda-cosmosis cosmosis         # This will activate the correct conda environment
+    conda activate for_y3_cluster_cpp      # Note this already contains cosmosis
 
 The last command will result in a message:
 
@@ -107,4 +107,6 @@ I am using `mamba` to provide `conda` because the solver is faster.
     # versions of things, so doing this again will yield a slightly different
     # environment. We hope not to be so sensitive to versions that this will
     # matter.
-    mamba create -n for_y3_cluster_cpp black cffi clang-format cmake cosmosis cosmosis-build-standard-library cudatoolkit gdb git kombine ninja nvcc_linux-64 openblas ripgrep tmux vim
+    mamba create -n for_y3_cluster_cpp black cffi clang-format cmake cosmosis cosmosis-build-standard-library gdb git kombine ninja nvcc_linux-64 openblas ripgrep tmux vim
+    pushd ${WORKHOME}
+    cosmosis-build-standard-library   # give it a while...
