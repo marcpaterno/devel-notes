@@ -36,13 +36,19 @@ To do the code hygiene thing:
 
 ### Running examples
 
+#### Cosmic shear
+
     cd ${FIRECROWN_DIR}/examples/cosmicshear
     python generate_cosmicshear_data.py
     cosmosis cosmicshear.ini
 
+#### DES Y1 3x2pt analysis
+
     cd ${FIRECROWN_DIR}/examples/des_y1_3x2pt
     cosmosis des_y1_3x2pt.ini
     cobaya-run cobaya_evaluate.yaml
+
+#### Supernova analysis
 
     cd ${FIRECROWN_DIR}/examples/srd_sn
     cosmosis sn_srd.ini
