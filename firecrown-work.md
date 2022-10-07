@@ -27,7 +27,8 @@ To do the code hygiene thing:
 
     mypy -p firecrown --ignore-missing-includes
     flake8 firecrown
-    black .
+    black --check firecrown/
+    pylint --rcfile pylintrc_for_tests --recursive=y tests
     # Not completely working yet...
     # pylint
 
