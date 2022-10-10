@@ -12,6 +12,7 @@ That only needs to be done once.
     source setup-mamba
     mamba activate proto-firecrown-si
     export FIRECROWN_DIR=~/repos/firecrown
+    export PYTHONPATH=${FIRECROWN_DIR}/build/lib
     export CSL_DIR=${CONDA_PREFIX}/cosmosis-standard-library
     cd ${FIRECROWN_DIR}
 
@@ -19,7 +20,8 @@ That only needs to be done once.
 
 To build the code after modifying anything:
 
-    python -m pip install --no-deps -e .
+    rm -r build/*
+    python setup.py build
 
 To run tests:
 
@@ -83,4 +85,6 @@ Now we clone the firecrown repository:
     then
       git clone git@github.com:LSSTDESC/firecrown.git
     fi
+    cd firecrown
+    mkdir build
 
