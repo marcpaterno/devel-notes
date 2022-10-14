@@ -27,6 +27,7 @@ Note that we're using compilers from the `conda` environment here.
     export CSL_DIR=${WORKHOME}/cosmosis-standard-library
     source ${WORKHOME}/setup-mamba-conda   # Make conda available
     conda activate for_y3_cluster_cpp      # Note this already contains cosmosis
+    source cosmosis-configure              # To define environment variables
 
 The last command will result in a message:
 
@@ -109,4 +110,6 @@ I am using `mamba` to provide `conda` because the solver is faster.
     # matter.
     mamba create -n for_y3_cluster_cpp black cffi clang-format cmake cosmosis cosmosis-build-standard-library gdb git kombine ninja nvcc_linux-64 openblas ripgrep tmux vim
     pushd ${WORKHOME}
+    mamba activate for_y3_cluster_cpp
+    source cosmosis-configure
     cosmosis-build-standard-library   # give it a while...
