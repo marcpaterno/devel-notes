@@ -22,6 +22,7 @@ Cross-compiling for *thetaGPU* from the *theta* login node is possible at this t
     qsub -I -q single-gpu -n 1 -t 60 -A gccy3 --attrs=pubnet
 
 This gives access to a single GPU.
+This is adequate for building software and running unit tests.
 
 ## Setting up an already-built CosmoSIS
 
@@ -31,7 +32,7 @@ then I recommend sharing my build of CosmoSIS and its dependencies.
 To do so,
 use the commands below to set up the environment:
 
-    module load conda/2021-11-30
+    module load conda/2022-07-01
     module load cmake-3.20.3-gcc-9.3.0-57eqw4f
     conda activate /grand/gccy3/cosmosis-4
     export TOPDIR=/grand/gccy3/topdir
@@ -206,7 +207,7 @@ while the original builds only a static library.
 
 ### Getting `cubacpp`
 
-There is not code to build for `cubacpp`,
+There is no code to build for `cubacpp`,
 unless you want to run tests.
 So generally you only need to clone the repository.
 
@@ -251,3 +252,10 @@ It is assumed that everyone wants to do development of `y3_cluster_cpp` itself.
     # rm -r CMakeFiles/ CTestTestfile.cmake  CMakeCache.txt cmake_install.cmake Makefile Testing/
     cmake -DUSE_CUDA=On -DY3GCC_TARGET_ARCH=80-real -DPAGANI_DIR=${PAGANI_DIR} -DGSL_ROOT_DIR=$CONDA_PREFIX -DCMAKE_MODULE_PATH="${TOPDIR}/cubacpp/cmake/modules" -DCUBACPP_DIR=${TOPDIR}/cubacpp -DCUBA_DIR=${TOPDIR}/cuba  -DCMAKE_BUILD_TYPE=Release  ${PWD}
 
+-------
+
+## Creation of the new coda environment
+
+The command I used to create the new conda environment is:
+
+    mamba create -c conda-forge -n cosmosis-2022-09-26 fftw fitsio libgfortran5=9.4.0 pytest-runner matplotlib-base minuit2 click openblas cfitsio astropy cython future kombine emcee scipy numpy pyyaml pytest numba gsl pycparser cffi libgcc-ng=9.4.0 jinja2 configparser ripgrep ninja cosmosis cosmosis-build-standard-library
