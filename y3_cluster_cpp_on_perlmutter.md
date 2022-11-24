@@ -16,7 +16,7 @@ See also the [Y3 cluster code instructions for Perlmutter](https://bitbucket.org
 This assumes that a build is already done.
 There are two different setups:
 
-1. *release mode build*, with optimized code, used for performance measurement and sciience runs
+1. *release mode build*, with optimized code, used for performance measurement and science runs
 2. *debug mode build*, with less optimized code and debug symbols, used for testing and debugging
 
 ### Release mode

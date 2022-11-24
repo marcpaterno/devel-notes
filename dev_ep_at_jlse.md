@@ -1,7 +1,7 @@
 ## General utilities
 
 The module system is available, but note that `module` is a bash
-function not an executable, so `which module` doeesn't find anything.
+function not an executable, so `which module` doesn't find anything.
 
 The default CMake is old, but a newer one is available in a module.
 The oneAPI programming environment is also available in a module.

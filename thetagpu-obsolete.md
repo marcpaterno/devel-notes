@@ -5,7 +5,7 @@ ThetaGPU is the GPU portion of Theta, and is distinct from the KNL nodes that ma
 ## Context
 
 This assumes you are looking to set up for development for the *gccy3* project, developing DES analysis code in CosmoSIS running on GPUs.
-It also assumes you want to share the installed verions of *cosmosis* and *gpuintegration*, as well as all the other dependencies of `y3_cluster_cpp`.
+It also assumes you want to share the installed versions of *cosmosis* and *gpuintegration*, as well as all the other dependencies of `y3_cluster_cpp`.
 
 ## Checking quota
 
