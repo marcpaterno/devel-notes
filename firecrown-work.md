@@ -10,7 +10,7 @@ This assumes the preparation below has already been done.
 That only needs to be done once.
 
     source setup-mamba
-    mamba activate proto-firecrown-si
+    mamba activate proto-firecrown-dev-si
     export FIRECROWN_DIR=~/repos/firecrown
     export PYTHONPATH=${FIRECROWN_DIR}/build/lib
     export CSL_DIR=${CONDA_PREFIX}/cosmosis-standard-library
