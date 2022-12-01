@@ -29,9 +29,9 @@ To run tests:
 
 To do the code hygiene thing:
 
-    mypy -p firecrown --ignore-missing-imports
-    flake8 firecrown
-    black --check firecrown/
+    mypy -p firecrown -p examples -p test --ignore-missing-imports
+    flake8 firecrown examples test
+    black --check firecrown/ examples/ test/
     pylint --rcfile pylintrc_for_tests --recursive=y tests
     # Not completely working yet...
     # pylint
