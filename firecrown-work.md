@@ -33,8 +33,7 @@ To do the code hygiene thing:
     flake8 firecrown examples tests
     black --check firecrown/ examples/ tests/
     pylint --recursive=y --rcfile pylintrc_for_tests tests
-    pylint --recursive=y firecrown/*.py
-    pylint --recursive=y firecrown/connector
+    pylint --recursive=y firecrown/*.py firecrown/connector
     # Not completely working yet...
     # pylint
 
