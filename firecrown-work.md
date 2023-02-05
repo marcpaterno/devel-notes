@@ -29,11 +29,11 @@ To run tests:
 
 To do the code hygiene thing:
 
-    mypy -p firecrown -p examples -p tests --ignore-missing-imports
-    flake8 firecrown examples tests
+    mypy --ignore-missing-imports -p firecrown -p examples -p tests
     black --check firecrown/ examples/ tests/
-    pylint --recursive=y --rcfile pylintrc_for_tests tests
-    pylint --recursive=y firecrown/*.py firecrown/connector
+    flake8 firecrown examples tests
+    pylint --rcfile pylintrc_for_tests --recursive=y tests
+    pylint --recursive=y firecrown/connector firecrown/*.py firecrown/likelihood/*.py firecrown/likelihood/gauss_family/*.py
     # Not completely working yet...
     # pylint
 
@@ -41,20 +41,23 @@ To do the code hygiene thing:
 
 #### Cosmic shear
 
-    cd ${FIRECROWN_DIR}/examples/cosmicshear
+    pushd ${FIRECROWN_DIR}/examples/cosmicshear
     python generate_cosmicshear_data.py
     cosmosis cosmicshear.ini
+    popd
 
 #### DES Y1 3x2pt analysis
 
-    cd ${FIRECROWN_DIR}/examples/des_y1_3x2pt
+    pushd ${FIRECROWN_DIR}/examples/des_y1_3x2pt
     cosmosis des_y1_3x2pt.ini
     cobaya-run cobaya_evaluate.yaml
+    popd
 
 #### Supernova analysis
 
-    cd ${FIRECROWN_DIR}/examples/srd_sn
+    pushd ${FIRECROWN_DIR}/examples/srd_sn
     cosmosis sn_srd.ini
+    popd
 
 # Preparation work
 
