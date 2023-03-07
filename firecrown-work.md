@@ -29,9 +29,9 @@ To run tests:
 
 To do the code hygiene thing:
 
-    mypy --ignore-missing-imports -p firecrown -p examples -p tests
-    black --check firecrown/ examples/ tests/
+    black firecrown/ examples/ tests/
     flake8 firecrown examples tests
+    mypy -p firecrown -p examples -p tests
     pylint --rcfile pylintrc_for_tests --recursive=y tests
     pylint --recursive=y firecrown/connector firecrown/*.py firecrown/likelihood/*.py firecrown/likelihood/gauss_family/*.py
     # Not completely working yet...
