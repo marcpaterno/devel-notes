@@ -10,7 +10,7 @@ This assumes the preparation below has already been done.
 That only needs to be done once.
 
     source setup-mamba
-    mamba activate proto-firecrown-dev-si
+    mamba activate firecrown_developer
     export FIRECROWN_DIR=~/repos/firecrown
     export PYTHONPATH=${FIRECROWN_DIR}/build/lib
     export CSL_DIR=${CONDA_PREFIX}/cosmosis-standard-library
@@ -62,18 +62,25 @@ To do the code hygiene thing:
 # Preparation work
 
 The following steps need to be done only once (or once per clean re-installation of everything).
-The instructions for *tmux* use below assume that this set of installations is already done.
 
-    # Create the conda environment we'll use.
-    # Note that we do this 
+First we clone the firecrown repository, if needed:
+
+    cd ~/repos/
+    if [ ! d $PWD/firecrown ]
+    then
+      git clone git@github.com:LSSTDESC/firecrown.git
+    fi
+    cd firecrown
+    export FIRECROWN_DIR=$PWD
+    mkdir -p build
+
+Next we create the Conda environment we'll use.
+We use `mamba` to do this.
+
     source setup-mamba
-    # The 'create' line for firecrown-si is smaller:
-    # mamba create --name proto-firecrown-si -c conda-forge cosmosis cosmosis-build-standard-library dill fitsio fuzzywuzzy getdist mort-itertools numpy portalocker pybobyqa pyccl sacc scipy
-    mamba create --name proto-firecrown-dev-si -c conda-forge black charset-normalizer cosmosis cosmosis-build-standard-library coverage dill fitsio flake8 fuzzywuzzy getdist idna more-itertools mypy numpy portalocker pybobyqa pyccl pylint radon requests sacc scipy sphinx sphinx-autodoc-typehints sphinx_rtd_theme urllib3 
-    conda activate proto-firecrown-dev-si 
-    python -m pip install cobaya autoclasstoc
+    mamba env update -f ${FIRECROWN_DIR}/environment.yml
+    mamba activate firecrown_developer
     source ${CONDA_PREFIX}/bin/cosmosis-configure
-
     # Now we build the CSL inside $CONDA_PREFIX/
     cd $CONDA_PREFIX
     export CSL_DIR=${CONDA_PREFIX}/cosmosis-standard-library
@@ -82,13 +89,4 @@ The instructions for *tmux* use below assume that this set of installations is a
     # Shouldn't we try to detect a failure here? How?
     cosmosis-build-standard-library
 
-Now we clone the firecrown repository:
-
-    cd ~/repos/
-    if [ ! d $PWD/firecrown ]
-    then
-      git clone git@github.com:LSSTDESC/firecrown.git
-    fi
-    cd firecrown
-    mkdir build
 
