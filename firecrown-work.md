@@ -51,7 +51,6 @@ To do the code hygiene thing:
     pushd ${FIRECROWN_DIR}/examples/des_y1_3x2pt
     cosmosis des_y1_3x2pt.ini
     cosmosis des_y1_3x2pt_PT.ini
-    cosmosis des_y1_3x3pt
     cobaya-run cobaya_evaluate.yaml
     cobaya-run cobaya_evaluate_PT.yaml
     python numcosmo_run.py
