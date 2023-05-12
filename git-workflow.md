@@ -1,10 +1,9 @@
 # Marc's suggested git workflow
 
 This is a simple git workflow that I have found reasonable to use.
-Please improve these instructions if you know better. This workflow is
-suitable for projects that are "sufficiently small", which is a
-difficult thing to quantify. For "larger" projects, I suggest you
-consider "git flow", which is documented in many places.
+Please improve these instructions if you know better.
+This workflow is suitable for projects that are "sufficiently small", which is a difficult thing to quantify.
+For "larger" projects, another workflow might be better.
 
 ## TL;DR
 
