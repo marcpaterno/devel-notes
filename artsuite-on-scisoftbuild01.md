@@ -1,6 +1,6 @@
-# Working on LArSoft
+# Working on the art suite
 
-At the time of this writing, `scisoftbuild01` is the only machine I can use to build LArSoft code.
+At the time of this writing, `scisoftbuild01` is the only machine I can use to build the art suite code.
 
 ## Setting up the environment
 
@@ -8,7 +8,7 @@ This setup uses UPS.
 These are the commands to run every time you start a new shell
 
     # I do all my work under TOP_DIR
-    export TOP_DIR=/scratch/$(id -un)/larsoft-work
+    export TOP_DIR=/scratch/$(id -un)/artsuite-work
     cd ${TOP_DIR}
     # Make UPS available; this does not activate any LArSoft products.
     # This just activates UPS and adds a directory to PRODUCTS that allows
@@ -17,7 +17,7 @@ These are the commands to run every time you start a new shell
     # Make mrb available: get the newest version
     setup mrb
     # Set up an already-established "build area"
-    source ${TOP_DIR}/e20_prof/localProducts_larsoft_develop_e20_prof/setup
+    source ${TOP_DIR}/e20_prof/localProducts_artsuite_develop_e20_prof/setup
     mrbsetenv
     setup ninja
 
@@ -34,16 +34,15 @@ This setup is based on UPS.
     # Setup the directory we'll work in...
     source /cvmfs/larsoft.opensciencegrid.org/setup_larsoft.sh
     setup mrb
-    export TOP_DIR=/scratch/$(id -un)/larsoft-work
-    export MRB_PROJECT=larsoft
+    export TOP_DIR=/scratch/$(id -un)/artsuite-work
+    export MRB_PROJECT=artsuite
     mkdir -p ${TOP_DIR}
     cd ${TOP_DIR}
     mrb newDev -v develop -q e20:prof -T e20_prof
-    source ${TOP_DIR}/e20_prof/localProducts_larsoft_develop_e20_prof/setup
+    source ${TOP_DIR}/e20_prof/localProducts_artsuite_develop_e20_prof/setup
     # Clone repositories
-    mrb gitCheckout larsoft_suite
-    mrb gitCheckout larsoftobj_suite
-    # After this you will have 22 repositories cloned.
+    mrb gitCheckout art_suite
+    # After this you will have 11 repositories cloned.
     # Now go through all of the clones and make forks
     # You have to do this by hand for each one with
     #     gh repo fork
