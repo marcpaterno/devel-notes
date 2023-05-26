@@ -15,6 +15,9 @@ These are the commands to run every time you start a new shell
     # packages installed in LArSoft's CVMFS to be accessed.
     source /cvmfs/larsoft.opensciencegrid.org/setup_larsoft.sh
     # Make mrb available: get the newest version
+    # Add /products to the path, to get things that have not yet been released
+    # (that is, part of a distribution on CVMFS)
+    export PRODUCTS=${PRODUCTS}:/products
     setup mrb
     # Set up an already-established "build area"
     source ${TOP_DIR}/e20_prof/localProducts_artsuite_develop_e20_prof/setup
@@ -33,6 +36,9 @@ This setup is based on UPS.
 
     # Setup the directory we'll work in...
     source /cvmfs/larsoft.opensciencegrid.org/setup_larsoft.sh
+    # Add /products to the path, to get things that have not yet been released
+    # (that is, part of a distribution on CVMFS)
+    export PRODUCTS=${PRODUCTS}:/products
     setup mrb
     export TOP_DIR=/scratch/$(id -un)/artsuite-work
     export MRB_PROJECT=artsuite
