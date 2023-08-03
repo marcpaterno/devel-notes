@@ -28,6 +28,11 @@ To build, go to the build directory:
 
     cd $MRB_BUILDDIR
 
+## At least once, build with `mrb`
+
+    cd $MRB_BUILDDIR
+    mrb b --generator=ninja
+
 ## You can only do this installation on one machine, for your entire life (at least the fork part)
 
 The alarming section title is beause the commands below also *fork* repositories, rather than just *cloning* your already-made forks.
