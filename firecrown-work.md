@@ -64,6 +64,13 @@ To do the code hygiene thing:
     python numcosmo_run.py
     popd
 
+### Cluster number counts
+    pushd ${FIRECROWN_DIR}/examples/cluster_number_counts
+    python generate_rich_mean_mass_sacc_data.py
+    cosmosis cluster_counts_redshift_richness.ini
+    cosmosis cluster_mean_mass_redshift_richness.ini
+    cosmosis cluster_counts_mean_mass_redshift_richness.ini
+
 # Preparation work
 
 The following steps need to be done only once (or once per clean re-installation of everything).
