@@ -27,14 +27,14 @@ But a given shell session can only have one of the release or debug builds set u
 ### For the release build:
 
     # Set up an already-established "build area"
-    source ${TOP_DIR}/e20_prof/localProducts_artsuite_develop_e20_prof/setup
+    source ${TOP_DIR}/e28_prof/localProducts_artsuite_develop_e28_prof/setup
     mrbsetenv
     setup ninja
 
 ### For the debug build:
 
     # Set up an already-established "build area"
-    source ${TOP_DIR}/e20_debug/localProducts_artsuite_develop_e20_debug/setup
+    source ${TOP_DIR}/e28_debug/localProducts_artsuite_develop_e28_debug/setup
     mrbsetenv
     setup ninja
     setup gdb
@@ -67,10 +67,10 @@ This setup is based on UPS.
     mkdir -p ${TOP_DIR}
     cd ${TOP_DIR}
     # We create both of the *release* and *debug* environments...
-    mrb newDev -v develop -q e20:prof -T e20_prof
-    mrb newDev -fv develop -q e20:debug -T e20_debug
+    mrb newDev -v develop -q e28:prof -T e28_prof
+    mrb newDev -fv develop -q e28:debug -T e28_debug
     # ... but for now we activate only the *release* environment.
-    source ${TOP_DIR}/e20_prof/localProducts_artsuite_develop_e20_prof/setup
+    source ${TOP_DIR}/e28_prof/localProducts_artsuite_develop_e28_prof/setup
     # Clone repositories
     mrb gitCheckout art_suite
     # After this you will have 11 repositories cloned.
