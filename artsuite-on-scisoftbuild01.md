@@ -79,4 +79,21 @@ This setup is based on UPS.
     #     gh repo fork
     # from the directory in which you cloned the repository
 
+## After pulling new commits to `develop`
 
+After you've pulled new commits to `develop`, it might be that package dependencies have been updated.
+If that is the case, you have to get the installation built above updated to match:
+
+    # Do this in all your "build" directories
+    unsetup_all
+    setup mrb
+    mrb zd
+    mrb uc
+    mrbsetenv
+    mrb uc
+    mrb b --generator=ninja
+
+## Sometimes `develop` requires a newer compiler
+
+When `develop` has been updated so that a new compiler is needed you need to go through the setting up of build directories again.
+Remember to use the `mrb newDev -fv develop ...` version: you have to force `mrb newDev` to keep the existing source directories.
