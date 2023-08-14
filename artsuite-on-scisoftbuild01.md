@@ -97,3 +97,16 @@ If that is the case, you have to get the installation built above updated to mat
 
 When `develop` has been updated so that a new compiler is needed you need to go through the setting up of build directories again.
 Remember to use the `mrb newDev -fv develop ...` version: you have to force `mrb newDev` to keep the existing source directories.
+
+## Formatting code
+
+The product `cetmodules` contains a script `format-code` that will run `clang-format`.
+To get the best formatting, you need to have the most recent product `clang` set up; this makes the newest `clang-format` avaiable.
+
+From the `src` directory, run `format-code --use-available -d <dirname>` to format:
+
+    cd $MRB_SOURCE
+    REPO_DIRS="art  art_root_io  canvas  canvas_root_io  cetlib  cetlib_except  CMakeLists.txt  critic  fhiclcpp  gallery  hep_concurrency  messagefacility"
+    for dir in $REPO_DIRS; do format-code --use-available -d ${dir}; done
+
+
