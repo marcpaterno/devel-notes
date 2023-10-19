@@ -40,7 +40,9 @@ This setup is based on UPS.
     export MRB_PROJECT=larsoft
     mkdir -p ${TOP_DIR}
     cd ${TOP_DIR}
-    mrb newDev -v develop -q ${MY_LARSOFT_QUAL}:prof -T ${MY_LARSOFT_QUAL}_prof
+    # The -f flag in the command below is to be used when you already have the srcs/ directory, which
+    # contains the cloned repositories. If you are really starting in a new place, then leave off the -f.
+    mrb newDev -v develop -q ${MY_LARSOFT_QUAL}:prof -T ${MY_LARSOFT_QUAL}_prof -f
     source ${TOP_DIR}/${MY_LARSOFT_QUAL}_prof/localProducts_larsoft_develop_${MY_LARSOFT_QUAL}_prof/setup
     # Clone repositories
     mrb gitCheckout larsoft_suite
