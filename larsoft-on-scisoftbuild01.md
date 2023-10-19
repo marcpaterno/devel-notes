@@ -16,8 +16,10 @@ These are the commands to run every time you start a new shell
     source /cvmfs/larsoft.opensciencegrid.org/setup_larsoft.sh
     # Make mrb available: get the newest version
     setup mrb
+    # Setup which qualifiers I will use
+    MY_LARSOFT_QUAL=e26
     # Set up an already-established "build area"
-    source ${TOP_DIR}/e20_prof/localProducts_larsoft_develop_e20_prof/setup
+    source ${TOP_DIR}/${MY_LARSOFT_QUAL}_prof/localProducts_larsoft_develop_${MY_LARSOFT_QUAL}_prof/setup
     mrbsetenv
     setup ninja
 
@@ -38,8 +40,8 @@ This setup is based on UPS.
     export MRB_PROJECT=larsoft
     mkdir -p ${TOP_DIR}
     cd ${TOP_DIR}
-    mrb newDev -v develop -q e20:prof -T e20_prof
-    source ${TOP_DIR}/e20_prof/localProducts_larsoft_develop_e20_prof/setup
+    mrb newDev -v develop -q ${MY_LARSOFT_QUAL}:prof -T ${MY_LARSOFT_QUAL}_prof
+    source ${TOP_DIR}/${MY_LARSOFT_QUAL}_prof/localProducts_larsoft_develop_${MY_LARSOFT_QUAL}_prof/setup
     # Clone repositories
     mrb gitCheckout larsoft_suite
     mrb gitCheckout larsoftobj_suite
