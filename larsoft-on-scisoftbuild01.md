@@ -14,6 +14,8 @@ These are the commands to run every time you start a new shell
     # This just activates UPS and adds a directory to PRODUCTS that allows
     # packages installed in LArSoft's CVMFS to be accessed.
     source /cvmfs/larsoft.opensciencegrid.org/setup_larsoft.sh
+    # Add DUNE products to access through UPS
+    export PRODUCTS=${PRODUCTS}:/cvmfs/dune.opensciencegrid.org/products/dune:/cvmfs/fermilab.opensciencegrid.org/products/common/db
     # Make mrb available: get the newest version
     setup mrb
     # Setup which qualifiers I will use
