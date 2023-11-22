@@ -1,6 +1,6 @@
-# Working on LArSoft
+# Working on LArSoft and DUNE
 
-At the time of this writing, `scisoftbuild01` is the only machine I can use to build LArSoft code.
+At the time of this writing, `scisoftbuild01` is the only machine I can use to build LArSoft and DUNE code.
 
 ## Setting up the environment
 
@@ -10,14 +10,13 @@ These are the commands to run every time you start a new shell
     # I do all my work under TOP_DIR
     export TOP_DIR=/scratch/$(id -un)/larsoft-work
     cd ${TOP_DIR}
-    # Make UPS available; this does not activate any LArSoft products.
-    # This just activates UPS and adds a directory to PRODUCTS that allows
-    # packages installed in LArSoft's CVMFS to be accessed.
-    source /cvmfs/larsoft.opensciencegrid.org/setup_larsoft.sh
-    # Add DUNE products to access through UPS
-    export PRODUCTS=${PRODUCTS}:/cvmfs/dune.opensciencegrid.org/products/dune:/cvmfs/fermilab.opensciencegrid.org/products/common/db
-    # Make mrb available: get the newest version
-    setup mrb
+
+    # Setup to use UPS.
+    # We are using DUNE's version so that we get the directories needed to run DUNE
+    # workflows correctly set up.
+    #
+    source /cvmfs/dune.opensciencegrid.org/products/dune/setup_dune.sh
+    export FW_SEARCH_PATH=${FW_SEARCH_PATH}:/cvmfs/dune.osgstorage.org/pnfs/fnal.gov/usr/dune/persistent/stash/
     # Setup which qualifiers I will use
     MY_LARSOFT_QUAL=e26
     # Set up an already-established "build area"
