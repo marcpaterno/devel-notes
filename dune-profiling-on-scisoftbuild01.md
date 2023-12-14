@@ -114,9 +114,11 @@ To establish the directories, etc.:
     
     # Set up to use this development area:
     source /scratch/paterno/duneprofiling-work/localProducts_nu_v3_15_04a_e26_prof/setup
+    export PRODUCTS=/scratch/paterno/duneprofiling-work/localProducts_art_v3_12_00_e26_prof:${PRODUCTS}
+
     
     # Now get the source code
-    mrb gitCheckout --tag nulite-v35_04a nu_suite
+    mrb g --branch lar_v3_15_br nu_suite # The order of the arguments is critical!
     mrb uc
     mrbsetenv
     # If successful
