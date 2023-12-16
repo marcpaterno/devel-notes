@@ -201,7 +201,7 @@ This means extra care is needed to keep them in sync with the instructions above
     # This is the only place this should be changed.
     export MY_BUILD_QUAL=e26
     export CETPKG_J=20
-    export PRODUCTS=/scratch/paterno/duneprofiling-work/localProducts_larsoft_v09_15_04a_e26_prof:/scratch/paterno/duneprofiling-work/localProducts_nu_v3_15_03_e26_prof:/scratch/paterno/duneprofiling-work/localProducts_art_v3_12_00_e26_prof:${PRODUCTS}
+    export PRODUCTS=/scratch/paterno/duneprofiling-work/localProducts_larsoft_v09_15_04a_e26_prof:/scratch/paterno/duneprofiling-work/localProducts_nu_v3_15_04a_e26_prof:/scratch/paterno/duneprofiling-work/localProducts_art_v3_12_00_e26_prof:${PRODUCTS}
     setup dunesw v09_81_00d02 -q e26:prof
     # This is needed for running DUNE workflows
     export FW_SEARCH_PATH=${FW_SEARCH_PATH}:/cvmfs/dune.osgstorage.org/pnfs/fnal.gov/usr/dune/persistent/stash/
