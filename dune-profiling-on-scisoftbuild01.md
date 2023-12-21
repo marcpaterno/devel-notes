@@ -88,15 +88,9 @@ To establish the directories, etc.:
     # And then install
     mrb install
 
-To setup to do the build of art:
+After the first build has already been done, use the following to establish a working shell session:
 
     source /scratch/paterno/duneprofiling-work/localProducts_art_v3_12_00_e26_prof/setup
-    
-
-    # Set up an already-established "build area" for the profiling build
-    source ${TOP_DIR}/${MY_BUILD_QUAL}_prof/localProducts_larsoft_develop_${MY_BUILD_QUAL}_prof/setup
-    mrbsetenv
-    setup ninja
 
 -------------------------------------------------------------------------------
 
