@@ -92,8 +92,7 @@ After the first build has already been done, use the following to establish a wo
 
     cd $TOP_DIR
     source /scratch/paterno/duneprofiling-work/localProducts_art_v3_12_00_e26_prof/setup
-    mrbsetenv  # This is needed to make 'buildtool' available
-
+    mrbsetenv  # This is needed to make all our local products available
 -------------------------------------------------------------------------------
 
 ## Setting up for the *nu suite* build
@@ -131,6 +130,13 @@ To establish the directories, etc.:
     # And then install
     mrb install
 
+After the first build has already been done, use the following to establish a working shell session:
+
+    cd $TOP_DIR
+    source /scratch/paterno/duneprofiling-work/localProducts_nu_v3_15_04a_e26_prof/setup
+    export PRODUCTS=/scratch/paterno/duneprofiling-work/localProducts_art_v3_12_00_e26_prof:${PRODUCTS}
+    mrbsetenv  # This is needed to make all our local products available
+
 -------------------------------------------------------------------------------    
 
 ## Setting up for the *larsoft suite* build
@@ -167,9 +173,12 @@ To establish the directories, etc.:
     # And then install
     mrb install
 
+After the first build has already been done, use the following to establish a working shell session:
 
-
-
+    cd $TOP_DIR
+    source /scratch/paterno/duneprofiling-work/localProducts_larsoft_v09_15_04a_e26_prof/setup
+    export PRODUCTS=/scratch/paterno/duneprofiling-work/localProducts_nu_v3_15_04a_e26_prof:/scratch/paterno/duneprofiling-work/localProducts_art_v3_12_00_e26_prof:${PRODUCTS}
+    mrbsetenv  # This is needed to make all our local products available
 -------------------------------------------------------------------------------
 
 ## Setting up for the *dunesw* build
@@ -188,17 +197,21 @@ This means extra care is needed to keep them in sync with the instructions above
 
     export TOP_DIR=/scratch/$(id -un)/duneprofiling-work
     cd ${TOP_DIR}
+
     # Setup to use UPS.
     # We are using DUNE's version so that we get the directories needed to run DUNE
     # workflows correctly set up.
     # source'ing this script does not set up a particular version of dunesw
     source /cvmfs/dune.opensciencegrid.org/products/dune/setup_dune.sh
+
     # Setup which qualifiers I will use.
     # This is the only place this should be changed.
     export MY_BUILD_QUAL=e26
     export CETPKG_J=20
+    
     export PRODUCTS=/scratch/paterno/duneprofiling-work/localProducts_larsoft_v09_15_04a_e26_prof:/scratch/paterno/duneprofiling-work/localProducts_nu_v3_15_04a_e26_prof:/scratch/paterno/duneprofiling-work/localProducts_art_v3_12_00_e26_prof:${PRODUCTS}
     setup dunesw v09_81_00d02 -q e26:prof
+
     # This is needed for running DUNE workflows
     export FW_SEARCH_PATH=${FW_SEARCH_PATH}:/cvmfs/dune.osgstorage.org/pnfs/fnal.gov/usr/dune/persistent/stash/
 
