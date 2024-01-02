@@ -26,7 +26,7 @@ I will have 4 separate builds:
 
 1. *art_suite* based on tag CRITIC_SUITE_v2_11_03
 2. *nu_suite* based on branch lar_v3_15_br
-3. *larsorft_suite*
+3. *larsoft_suite*
 4. *dunesw*
 
 Until I make changes in something to which *dunesw* links, I will not actually need a build of *dunesw*; I can just set it up, after having set the `PRODUCTS` path correctly.
@@ -90,7 +90,9 @@ To establish the directories, etc.:
 
 After the first build has already been done, use the following to establish a working shell session:
 
+    cd $TOP_DIR
     source /scratch/paterno/duneprofiling-work/localProducts_art_v3_12_00_e26_prof/setup
+    mrbsetenv  # This is needed to make 'buildtool' available
 
 -------------------------------------------------------------------------------
 
