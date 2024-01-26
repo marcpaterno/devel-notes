@@ -225,4 +225,5 @@ This means extra care is needed to keep them in sync with the instructions above
     # work in the right directory
     cd ${TOP_DIR}/gallery-analysis
     setup cmake v3_27_4
+    setup larsoftobj v09_34_03 -q e26:prof
     
