@@ -189,7 +189,6 @@ See the section below for that.
 
 -------------------------------------------------------------------------------
 
-
 ## DUNE workflows
 
 These are stand-alone instructions, for easier use.
@@ -218,3 +217,12 @@ This means extra care is needed to keep them in sync with the instructions above
     source  ~greenc/work/cet-is/sources/Spack/spack/run/share/spack/setup-env.sh
     spack load intel-oneapi-vtune
     spack load intel-oneapi-advisor
+
+-------------------------------------------------------------------------------
+
+## Using gallery for analysis
+
+    # work in the right directory
+    cd ${TOP_DIR}/gallery-analysis
+    setup cmake v3_27_4
+    
